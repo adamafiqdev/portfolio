@@ -31,18 +31,37 @@
 
   // ── Fetch Projects ────────────────────────────────────────
   async function loadProjects() {
+    // localStorage is the live editing layer (written by manage.html).
+    // Always prefer it over the static JSON file so that changes made
+    // in manage.html are immediately visible here without a deploy.
+    const stored = localStorage.getItem('portfolio_projects');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          allProjects = parsed;
+          buildFilters();
+          renderProjects();
+          return;
+        }
+      } catch (_) {}
+    }
+
+    // No localStorage data yet — seed from projects.json (first visit
+    // or after the user clears their browser storage).
     try {
       const res = await fetch(PROJECTS_URL);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       allProjects = data.projects || [];
-    } catch (err) {
-      // Fallback: check localStorage (for local manage.html usage)
-      const stored = localStorage.getItem('portfolio_projects');
-      if (stored) {
-        try { allProjects = JSON.parse(stored); } catch (_) { allProjects = []; }
+      // Persist to localStorage so manage.html and future loads stay in sync.
+      if (allProjects.length > 0) {
+        localStorage.setItem('portfolio_projects', JSON.stringify(allProjects));
       }
+    } catch (err) {
+      allProjects = [];
     }
+
     buildFilters();
     renderProjects();
   }

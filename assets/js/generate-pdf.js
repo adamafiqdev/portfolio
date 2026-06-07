@@ -754,13 +754,27 @@ ${baseCSS()}
 
     const overlay = showOverlay();
 
-    // Fetch projects only for portfolio
+    // Load projects only for portfolio.
+    // Check localStorage first (the live layer written by manage.html),
+    // falling back to the static JSON only when localStorage is empty.
     let projects = [];
     if (isPF) {
-      try {
-        const r = await fetch('data/projects.json');
-        if (r.ok) projects = await r.json();
-      } catch (_) { /* silently fall back to empty array */ }
+      const stored = localStorage.getItem('portfolio_projects');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) projects = parsed;
+        } catch (_) {}
+      }
+      if (!projects.length) {
+        try {
+          const r = await fetch('data/projects.json');
+          if (r.ok) {
+            const data = await r.json();
+            projects = data.projects || [];
+          }
+        } catch (_) {}
+      }
     }
 
     // Append container to body in normal document flow.
