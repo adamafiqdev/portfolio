@@ -316,7 +316,6 @@ ${baseCSS()}
   border-left: 4px solid #2563eb;
   background: #fafafa;
   padding: 13px 14px;
-  height: 150px;
 }
 .pdf-root .pf-proj-details-full {
   border: 1px solid #e2e8f0;
@@ -328,15 +327,21 @@ ${baseCSS()}
 }
 .pdf-root .pf-proj-img-wrap {
   border: 1px solid #e2e8f0;
-  height: 150px;
   overflow: hidden;
   background: #eff6ff;
 }
 .pdf-root .pf-proj-img-wrap img {
   width: 100%;
-  height: 150px;
+  height: 180px;
   object-fit: cover;
   display: block;
+}
+.pdf-root .pf-proj-feat {
+  margin: 5px 0 7px 14px;
+  padding: 0;
+  font-size: 8pt;
+  color: #374151;
+  line-height: 1.7;
 }
 .pdf-root .pf-proj-cat {
   font-size: 7pt;
@@ -532,17 +537,25 @@ ${baseCSS()}
       let imgIdx = 0;
       return display.map(p => {
         const hasImage = !!p.coverImage;
-        const descShort = (p.description || '').length > 130 ? (p.description || '').slice(0, 130) + '…' : (p.description || '');
-        const descFull  = (p.description || '').length > 220 ? (p.description || '').slice(0, 220) + '…' : (p.description || '');
-        const techList  = (p.technologies || []).slice(0, 6).join(' &middot; ');
+        const rawDesc  = p.longDescription || p.description || '';
+        const descHTML = rawDesc
+          .split(/\n\n+/)
+          .map(para => para.trim().replace(/\n/g, '<br>'))
+          .filter(Boolean)
+          .map(para => `<p class="pf-proj-desc">${para}</p>`)
+          .join('');
+        const techList = (p.technologies || []).join(' &middot; ');
+        const featList = (p.features || []).length
+          ? `<ul class="pf-proj-feat">${(p.features || []).map(f => `<li>${f}</li>`).join('')}</ul>` : '';
 
         if (!hasImage) {
           return `
             <div class="pf-proj-details-full">
               <span class="pf-proj-cat">${p.category || ''}</span>
               <span class="pf-proj-name">${p.title || ''}</span>
-              <p class="pf-proj-desc" style="margin-bottom:7px">${descFull}</p>
-              <span class="pf-proj-tech">${techList}</span>
+              ${descHTML}
+              ${featList}
+              ${techList ? `<span class="pf-proj-tech">${techList}</span>` : ''}
             </div>`;
         }
 
@@ -553,8 +566,9 @@ ${baseCSS()}
           <div class="pf-proj-details">
             <span class="pf-proj-cat">${p.category || ''}</span>
             <span class="pf-proj-name">${p.title || ''}</span>
-            <p class="pf-proj-desc">${descShort}</p>
-            <span class="pf-proj-tech">${techList}</span>
+            ${descHTML}
+            ${featList}
+            ${techList ? `<span class="pf-proj-tech">${techList}</span>` : ''}
           </div>`;
         const imageCell = `<div class="pf-proj-img-wrap"><img src="${p.coverImage}" alt=""></div>`;
 
