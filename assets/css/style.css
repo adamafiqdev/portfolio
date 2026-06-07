@@ -1100,7 +1100,7 @@ ul { list-style: none; }
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 12px;
   margin-top: 56px;
 }
@@ -2078,7 +2078,7 @@ textarea.form-control {
 ============================================================ */
 @media (max-width: 1024px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .tech-grid { grid-template-columns: repeat(4, 1fr); }
+  .tech-grid { grid-template-columns: repeat(5, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-image-wrap { max-width: 320px; }
@@ -2115,7 +2115,7 @@ textarea.form-control {
     padding: 12px 16px;
   }
   .services-grid { grid-template-columns: 1fr; }
-  .tech-grid { grid-template-columns: repeat(3, 1fr); }
+  .tech-grid { grid-template-columns: repeat(4, 1fr); }
   .projects-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-title { font-size: 34px; }
