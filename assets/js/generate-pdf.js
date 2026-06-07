@@ -177,7 +177,7 @@ ${baseCSS()}
 }
 .pdf-root .pf-header-main {
   display: table-cell;
-  padding: 30px 40px 24px;
+  padding: 14px 40px 14px;
   vertical-align: middle;
   border-bottom: 3px solid #2563eb;
 }
@@ -203,7 +203,16 @@ ${baseCSS()}
   font-weight: 600;
   color: #2563eb;
   display: block;
-  margin-bottom: 11px;
+  margin-bottom: 7px;
+}
+.pdf-root .pf-header-contact {
+  font-size: 8pt;
+  color: #4b5563;
+  display: block;
+}
+.pdf-root .pf-header-contact span + span::before {
+  content: ' • ';
+  color: #9ca3af;
 }
 .pdf-root .pf-contact-row {
   display: table;
@@ -505,6 +514,9 @@ ${baseCSS()}
     <div class="pf-header-main">
       <span class="pf-name">${name}</span>
       <span class="pf-role">${role}</span>
+      <div class="pf-header-contact">
+        ${[email, phone, github, location].filter(Boolean).map(v => `<span>${v}</span>`).join('')}
+      </div>
     </div>
     <div class="pf-header-deco" style="${profileImage ? 'padding:0;overflow:hidden;vertical-align:top;' : ''}">
       ${profileImage
@@ -518,13 +530,7 @@ ${baseCSS()}
   <div class="pf-body">
 
     <div class="pf-sidebar">
-      <span class="pf-sec">Contact</span>
-      ${email    ? `<span class="pf-sk-item" style="font-size:8pt;word-break:break-all">${email}</span>`    : ''}
-      ${phone    ? `<span class="pf-sk-item" style="font-size:8pt">${phone}</span>`    : ''}
-      ${github   ? `<span class="pf-sk-item" style="font-size:8pt">${github}</span>`   : ''}
-      ${location ? `<span class="pf-sk-item" style="font-size:8pt">${location}</span>` : ''}
-
-      <span class="pf-sec" style="margin-top:20px">Technical Proficiencies</span>
+      <span class="pf-sec">Technical Proficiencies</span>
       ${CATS.filter(c => techGroups[c]?.length).map(c => `
         <span class="pf-sk-cat">${CAT_LABELS[c] || c}</span>
         ${techGroups[c].map(t => `<span class="pf-sk-item">${t.name}</span>`).join('')}
