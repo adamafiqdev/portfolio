@@ -27,26 +27,44 @@
   // ── Storage ───────────────────────────────────────────────
   function save() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+    // Keep the version key in sync so projects.js knows this data is current.
+    const v = localStorage.getItem('portfolio_projects_v') || '1';
+    localStorage.setItem('portfolio_projects_v', v);
   }
 
   function load() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        projects = JSON.parse(raw);
-        return;
-      }
-    } catch (_) {}
-
+    // Check version against projects.json before trusting localStorage.
     fetch('data/projects.json')
       .then(r => r.json())
       .then(data => {
+        const jsonVersion = data._v || 1;
+        const storedVersion = parseInt(localStorage.getItem('portfolio_projects_v') || '0', 10);
+        const raw = localStorage.getItem(STORAGE_KEY);
+
+        if (raw && storedVersion >= jsonVersion) {
+          try {
+            projects = JSON.parse(raw);
+            renderSidebar();
+            showWelcome();
+            return;
+          } catch (_) {}
+        }
+
+        // Re-seed from JSON (first visit or version bump).
         projects = data.projects || [];
-        save();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+        localStorage.setItem('portfolio_projects_v', String(jsonVersion));
         renderSidebar();
         showWelcome();
       })
-      .catch(() => { projects = []; });
+      .catch(() => {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) projects = JSON.parse(raw);
+        } catch (_) { projects = []; }
+        renderSidebar();
+        showWelcome();
+      });
   }
 
   // ── Helpers ───────────────────────────────────────────────

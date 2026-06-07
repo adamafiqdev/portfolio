@@ -31,11 +31,24 @@
 
   // ── Fetch Projects ────────────────────────────────────────
   async function loadProjects() {
-    // localStorage is the live editing layer (written by manage.html).
-    // Always prefer it over the static JSON file so that changes made
-    // in manage.html are immediately visible here without a deploy.
+    // Always fetch projects.json to check _v (version).
+    // If the version stored in localStorage is older, the JSON file has been
+    // updated (new projects deployed) and we must re-seed from it.
+    // If the version matches, localStorage may contain manage.html edits that
+    // haven't been deployed yet — use those so live edits stay visible.
+    let jsonData = null;
+    try {
+      const res = await fetch(PROJECTS_URL);
+      if (res.ok) jsonData = await res.json();
+    } catch (_) {}
+
+    const jsonVersion = jsonData ? (jsonData._v || 1) : 0;
+    const storedVersion = parseInt(localStorage.getItem('portfolio_projects_v') || '0', 10);
     const stored = localStorage.getItem('portfolio_projects');
-    if (stored) {
+
+    if (stored && storedVersion >= jsonVersion) {
+      // localStorage is at least as new as the deployed JSON — use it so
+      // manage.html edits are reflected without needing a re-deploy.
       try {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -47,19 +60,11 @@
       } catch (_) {}
     }
 
-    // No localStorage data yet — seed from projects.json (first visit
-    // or after the user clears their browser storage).
-    try {
-      const res = await fetch(PROJECTS_URL);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      allProjects = data.projects || [];
-      // Persist to localStorage so manage.html and future loads stay in sync.
-      if (allProjects.length > 0) {
-        localStorage.setItem('portfolio_projects', JSON.stringify(allProjects));
-      }
-    } catch (err) {
-      allProjects = [];
+    // Version mismatch (or no localStorage) — seed from the fetched JSON.
+    allProjects = jsonData ? (jsonData.projects || []) : [];
+    if (allProjects.length > 0) {
+      localStorage.setItem('portfolio_projects', JSON.stringify(allProjects));
+      localStorage.setItem('portfolio_projects_v', String(jsonVersion));
     }
 
     buildFilters();

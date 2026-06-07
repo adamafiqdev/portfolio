@@ -755,25 +755,29 @@ ${baseCSS()}
     const overlay = showOverlay();
 
     // Load projects only for portfolio.
-    // Check localStorage first (the live layer written by manage.html),
-    // falling back to the static JSON only when localStorage is empty.
+    // Mirror the same version-aware logic used in projects.js:
+    // if localStorage version >= JSON version, use localStorage (may have
+    // manage.html edits); otherwise re-seed from the deployed JSON.
     let projects = [];
     if (isPF) {
+      let jsonData = null;
+      try {
+        const r = await fetch('data/projects.json');
+        if (r.ok) jsonData = await r.json();
+      } catch (_) {}
+
+      const jsonVersion = jsonData ? (jsonData._v || 1) : 0;
+      const storedVersion = parseInt(localStorage.getItem('portfolio_projects_v') || '0', 10);
       const stored = localStorage.getItem('portfolio_projects');
-      if (stored) {
+
+      if (stored && storedVersion >= jsonVersion) {
         try {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) projects = parsed;
         } catch (_) {}
       }
-      if (!projects.length) {
-        try {
-          const r = await fetch('data/projects.json');
-          if (r.ok) {
-            const data = await r.json();
-            projects = data.projects || [];
-          }
-        } catch (_) {}
+      if (!projects.length && jsonData) {
+        projects = jsonData.projects || [];
       }
     }
 
