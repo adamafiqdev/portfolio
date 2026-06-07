@@ -145,6 +145,21 @@
     const experience = sd.experience || [];
     const initials   = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase() || 'AA';
 
+    const CATS = ['Programming Skill', 'Software', 'Hardware', 'AI Agent', 'Operating System'];
+    const CAT_LABELS = {
+      'Programming Skill': 'Programming Skills',
+      'Software':          'Software',
+      'Hardware':          'Hardware',
+      'AI Agent':          'AI & Agents',
+      'Operating System':  'Operating Systems',
+    };
+    const techGroups = {};
+    techStack.forEach(t => {
+      const cat = t.category || 'Programming Skill';
+      if (!techGroups[cat]) techGroups[cat] = [];
+      techGroups[cat].push(t);
+    });
+
     const featured = projects.filter(p => p.featured);
     const others   = projects.filter(p => !p.featured);
     const display  = [...featured, ...others];
@@ -260,11 +275,22 @@ ${baseCSS()}
 }
 
 /* ---- SKILL ITEMS (sidebar list) ---- */
+.pdf-root .pf-sk-cat {
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+.pdf-root .pf-sk-cat:first-of-type { margin-top: 4px; }
 .pdf-root .pf-sk-item {
   font-size: 9pt;
   color: #334155;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   padding-left: 8px;
   border-left: 3px solid #bfdbfe;
 }
@@ -496,8 +522,11 @@ ${baseCSS()}
       ${github   ? `<span class="pf-sk-item" style="font-size:8pt">${github}</span>`   : ''}
       ${location ? `<span class="pf-sk-item" style="font-size:8pt">${location}</span>` : ''}
 
-      <span class="pf-sec" style="margin-top:20px">Technical Skills</span>
-      ${techStack.map(t => `<span class="pf-sk-item">${t.name}</span>`).join('')}
+      <span class="pf-sec" style="margin-top:20px">Technical Proficiencies</span>
+      ${CATS.filter(c => techGroups[c]?.length).map(c => `
+        <span class="pf-sk-cat">${CAT_LABELS[c] || c}</span>
+        ${techGroups[c].map(t => `<span class="pf-sk-item">${t.name}</span>`).join('')}
+      `).join('')}
     </div>
 
     <div class="pf-main">
@@ -578,20 +607,10 @@ ${baseCSS()}
     })()}
   </div>
 
-  <!-- FOOTER: own page, pinned to bottom via table vertical-align -->
-  <!-- 281mm = A4 (297mm) minus top+bottom margins (8mm each) -->
-  <div style="page-break-before:always;display:table;width:210mm;height:281mm;table-layout:fixed;overflow:hidden;">
-    <div style="display:table-cell;vertical-align:bottom;">
-      <div class="pf-footer">
-        <span class="pf-footer-title">Let's Build Something Together</span>
-        <span class="pf-footer-sub">Open to new projects and collaborations. Feel free to reach out.</span>
-        <div class="pf-footer-row">
-          ${email    ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Email</span><span class="pf-footer-val">${email}</span></div>`       : ''}
-          ${github   ? `<div class="pf-footer-col"><span class="pf-footer-lbl">GitHub</span><span class="pf-footer-val">${github}</span></div>`      : ''}
-          ${location ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Location</span><span class="pf-footer-val">${location}</span></div>` : ''}
-        </div>
-      </div>
-    </div>
+  <!-- REFEREE -->
+  <div style="margin-top:32px;padding:20px 28px;border-top:2px solid #e2e8f0;">
+    <span style="font-size:8.5pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2563eb;display:block;margin-bottom:6px;">Referee</span>
+    <span style="font-size:10pt;color:#374151;">Will be provided upon request.</span>
   </div>
 
 </div>`;
@@ -612,6 +631,21 @@ ${baseCSS()}
     const techStack  = sd.techStack  || [];
     const experience = sd.experience || [];
     const services   = sd.services   || [];
+
+    const CV_CATS = ['Programming Skill', 'Software', 'Hardware', 'AI Agent', 'Operating System'];
+    const CV_CAT_LABELS = {
+      'Programming Skill': 'Programming Skills',
+      'Software':          'Software',
+      'Hardware':          'Hardware',
+      'AI Agent':          'AI & Agents',
+      'Operating System':  'Operating Systems',
+    };
+    const cvTechGroups = {};
+    techStack.forEach(t => {
+      const cat = t.category || 'Programming Skill';
+      if (!cvTechGroups[cat]) cvTechGroups[cat] = [];
+      cvTechGroups[cat].push(t);
+    });
 
     // Strip HTML tags for plain-text summary paragraph
     const summary = bio.map(p => p.replace(/<[^>]+>/g, '')).join(' ');
@@ -695,6 +729,10 @@ ${baseCSS()}
 /* ---- SKILLS ---- */
 .pdf-root .cv-skill-grp { margin-bottom: 14px; }
 .pdf-root .cv-skill-grp:last-child { margin-bottom: 0; }
+.pdf-root .cv-skill-cat {
+  font-size: 7.5pt; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #4f46e5; display: block; margin-bottom: 5px;
+}
 
 /* ---- SIDEBAR ---- */
 .pdf-root .cv-side-sec { margin-bottom: 20px; }
@@ -759,10 +797,12 @@ ${baseCSS()}
       </div>
 
       <div class="cv-sec">
-        <span class="cv-sec-title">Technical Skills</span>
-        <div class="cv-skill-grp">
-          ${techStack.map(t => `<span class="tag">${t.name}</span>`).join('')}
-        </div>
+        <span class="cv-sec-title">Technical Proficiencies</span>
+        ${CV_CATS.filter(c => cvTechGroups[c]?.length).map(c => `
+          <div class="cv-skill-grp">
+            <span class="cv-skill-cat">${CV_CAT_LABELS[c] || c}</span>
+            ${cvTechGroups[c].map(t => `<span class="tag">${t.name}</span>`).join('')}
+          </div>`).join('')}
       </div>
 
     </div>

@@ -96,24 +96,48 @@
   function applyTechStack(techStack) {
     const grid = document.getElementById('techGrid');
     if (!grid || !techStack?.length) return;
+    const CATS = ['Programming Skill', 'Software', 'Hardware', 'AI Agent', 'Operating System'];
+    const CAT_LABELS = {
+      'Programming Skill': 'Programming Skills',
+      'Software':          'Software',
+      'Hardware':          'Hardware',
+      'AI Agent':          'AI & Agents',
+      'Operating System':  'Operating Systems',
+    };
     const delays = ['', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4'];
-    grid.innerHTML = techStack.map((t, i) => {
-      let iconHTML;
-      if (t.iconDataUrl) {
-        iconHTML = `<img src="${t.iconDataUrl}" alt="${t.name}" loading="lazy">`;
-      } else if (t.iconUrl) {
-        iconHTML = `<img src="${t.iconUrl}" alt="${t.name}" loading="lazy">`;
-      } else if (t.emoji) {
-        iconHTML = `<span style="font-size:32px;color:var(--text-secondary)">${t.emoji}</span>`;
-      } else {
-        iconHTML = `<span style="font-size:28px;color:var(--text-muted)">?</span>`;
-      }
-      return `
-        <div class="tech-item reveal ${delays[i % 5]}">
-          <div class="tech-icon">${iconHTML}</div>
-          <span class="tech-name">${t.name || ''}</span>
-        </div>`;
-    }).join('');
+
+    const groups = {};
+    techStack.forEach(t => {
+      const cat = t.category || 'Programming Skill';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(t);
+    });
+
+    grid.innerHTML = CATS
+      .filter(cat => groups[cat]?.length)
+      .map(cat => {
+        const items = groups[cat].map((t, i) => {
+          let iconHTML;
+          if (t.iconDataUrl) {
+            iconHTML = `<img src="${t.iconDataUrl}" alt="${t.name}" loading="lazy">`;
+          } else if (t.iconUrl) {
+            iconHTML = `<img src="${t.iconUrl}" alt="${t.name}" loading="lazy">`;
+          } else {
+            iconHTML = `<span style="font-size:28px;color:var(--text-muted)">?</span>`;
+          }
+          return `
+            <div class="tech-item reveal ${delays[i % 5]}">
+              <div class="tech-icon">${iconHTML}</div>
+              <span class="tech-name">${t.name || ''}</span>
+            </div>`;
+        }).join('');
+        return `
+          <div class="tech-group reveal">
+            <div class="tech-group-label">${CAT_LABELS[cat] || cat}</div>
+            <div class="tech-group-grid">${items}</div>
+          </div>`;
+      }).join('');
+
     observeReveal(grid);
   }
 

@@ -844,7 +844,6 @@
       const src  = t.iconDataUrl || t.iconUrl || '';
       const preview = t.iconDataUrl || t.iconUrl
         ? `<img src="${escAttr(src)}" alt="${escAttr(t.name)}" style="width:36px;height:36px;object-fit:contain" onerror="this.style.display='none'">`
-        : t.emoji ? `<span style="font-size:26px">${escHtml(t.emoji)}</span>`
         : `<span style="font-size:20px;color:var(--text-muted)">?</span>`;
       return `
         <div class="section-item-card tech-item-card">
@@ -857,8 +856,14 @@
                   <input class="form-control tech-nm" type="text" data-i="${i}" value="${escAttr(t.name || '')}">
                 </div>
                 <div class="form-group" style="margin:0">
-                  <label class="form-label">Emoji (if no icon)</label>
-                  <input class="form-control tech-em" type="text" data-i="${i}" value="${escAttr(t.emoji || '')}" placeholder="🍓">
+                  <label class="form-label">Category</label>
+                  <select class="form-control tech-cat" data-i="${i}">
+                    <option value="Programming Skill"${(t.category||'Programming Skill')==='Programming Skill'?' selected':''}>Programming Skill</option>
+                    <option value="Software"${t.category==='Software'?' selected':''}>Software</option>
+                    <option value="Hardware"${t.category==='Hardware'?' selected':''}>Hardware</option>
+                    <option value="AI Agent"${t.category==='AI Agent'?' selected':''}>AI Agent</option>
+                    <option value="Operating System"${t.category==='Operating System'?' selected':''}>Operating System</option>
+                  </select>
                 </div>
               </div>
               <div class="form-group" style="margin:0">
@@ -888,14 +893,14 @@
     const readTechs = () => {
       const t = siteData.techStack || [];
       document.querySelectorAll('.tech-nm').forEach(el  => { const i = +el.dataset.i; if (t[i]) t[i].name     = el.value; });
-      document.querySelectorAll('.tech-em').forEach(el  => { const i = +el.dataset.i; if (t[i]) t[i].emoji    = el.value; });
+      document.querySelectorAll('.tech-cat').forEach(el => { const i = +el.dataset.i; if (t[i]) t[i].category = el.value; });
       document.querySelectorAll('.tech-url').forEach(el => { const i = +el.dataset.i; if (t[i]) t[i].iconUrl  = el.value; });
     };
     const rebuild = () => { document.getElementById('techList').innerHTML = renderTechList(siteData.techStack || []); bindTechEditor(); };
     const doSave  = () => { readTechs(); saveSiteData(); };
     const doAdd   = () => {
       readTechs();
-      (siteData.techStack = siteData.techStack || []).push({ id: 'tech-' + Date.now(), name: 'New Tech', iconUrl: '', iconDataUrl: '', emoji: '' });
+      (siteData.techStack = siteData.techStack || []).push({ id: 'tech-' + Date.now(), name: 'New Tech', iconUrl: '', iconDataUrl: '', category: 'Programming Skill' });
       rebuild();
     };
     document.getElementById('saveTechBtn')?.addEventListener('click', doSave);
