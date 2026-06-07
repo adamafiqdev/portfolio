@@ -573,7 +573,7 @@ ${baseCSS()}
 
   <!-- FOOTER: own page, pinned to bottom via table vertical-align -->
   <!-- 267mm = A4 (297mm) minus top+bottom margins (15mm each) -->
-  <div style="page-break-before:always;display:table;width:210mm;min-height:267mm;table-layout:fixed;">
+  <div style="page-break-before:always;display:table;width:210mm;height:267mm;table-layout:fixed;overflow:hidden;">
     <div style="display:table-cell;vertical-align:bottom;">
       <div class="pf-footer">
         <span class="pf-footer-title">Let's Build Something Together</span>
