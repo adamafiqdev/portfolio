@@ -670,10 +670,8 @@ ul { list-style: none; }
    ABOUT SECTION
 ============================================================ */
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
-  align-items: center;
+  display: block;
+  max-width: 780px;
 }
 
 .about-image-wrap {
@@ -2080,8 +2078,7 @@ textarea.form-control {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .tech-grid { grid-template-columns: repeat(5, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
-  .about-image-wrap { max-width: 320px; }
+  .about-grid { max-width: 100%; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
   .contact-inner { grid-template-columns: 1fr; gap: 48px; }

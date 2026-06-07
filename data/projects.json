@@ -1,5 +1,5 @@
 {
-  "_v": 5,
+  "_v": 7,
   "projects": [
     {
       "id": "project-1",
@@ -22,12 +22,8 @@
         "Secure user authentication"
       ],
       "featured": true,
-      "coverImage": "assets/projects/project-1/cover.jpg",
-      "screenshots": [
-        "assets/projects/project-1/cover.jpg",
-        "assets/projects/project-1/screenshot-2.jpg",
-        "assets/projects/project-1/screenshot-3.jpg"
-      ],
+      "coverImage": "",
+      "screenshots": [],
       "technologies": [
         "MySQL",
         "Chart.js",
@@ -65,11 +61,8 @@
         "Dashboard with real-time KPI metrics"
       ],
       "featured": true,
-      "coverImage": "assets/projects/project-2/cover.jpg",
-      "screenshots": [
-        "assets/projects/project-2/cover.jpg",
-        "assets/projects/project-2/screenshot-2.jpg"
-      ],
+      "coverImage": "",
+      "screenshots": [],
       "technologies": [
         "PHP",
         "MySQL",
@@ -104,12 +97,8 @@
         "Mobile-responsive interface"
       ],
       "featured": true,
-      "coverImage": "assets/projects/project-3/cover.jpg",
-      "screenshots": [
-        "assets/projects/project-3/cover.jpg",
-        "assets/projects/project-3/screenshot-2.jpg",
-        "assets/projects/project-3/screenshot-3.jpg"
-      ],
+      "coverImage": "",
+      "screenshots": [],
       "technologies": [
         "Python",
         "JavaScript",
@@ -138,10 +127,8 @@
       "longDescription": "",
       "features": [],
       "featured": false,
-      "coverImage": "images/photo_7_2025-05-30_10-20-22.jpg",
-      "screenshots": [
-        "images/photo_7_2025-05-30_10-20-22.jpg"
-      ],
+      "coverImage": "",
+      "screenshots": [],
       "technologies": [],
       "tags": [],
       "githubUrl": "",
@@ -318,11 +305,8 @@
         "Centralized data access"
       ],
       "featured": false,
-      "coverImage": "images/photo_13_2025-05-30_10-20-22.jpg",
-      "screenshots": [
-        "images/photo_13_2025-05-30_10-20-22.jpg",
-        "images/photo_3_2025-05-30_10-20-22.jpg"
-      ],
+      "coverImage": "",
+      "screenshots": [],
       "technologies": [],
       "tags": [],
       "githubUrl": "",

@@ -67,6 +67,16 @@
         }
         if (lblEl) lblEl.textContent = s.label || '';
       });
+
+      const downloadStats = document.querySelector('.download-stats');
+      if (downloadStats) {
+        downloadStats.innerHTML = about.stats.map((s, i) => `
+          ${i > 0 ? '<div class="download-stat-sep" aria-hidden="true"></div>' : ''}
+          <div class="download-stat">
+            <span class="download-stat-num">${s.target}${s.suffix || ''}</span>
+            <span class="download-stat-label">${s.label || ''}</span>
+          </div>`).join('');
+      }
     }
   }
 
