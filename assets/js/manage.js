@@ -34,7 +34,7 @@
 
   function load() {
     // Check version against projects.json before trusting localStorage.
-    fetch('data/projects.json')
+    fetch('data/projects.json', { cache: 'no-cache' })
       .then(r => r.json())
       .then(data => {
         const jsonVersion = data._v || 1;
@@ -587,7 +587,7 @@
   async function loadSiteData() {
     let jsonData = null;
     try {
-      const r = await fetch('data/site.json');
+      const r = await fetch('data/site.json', { cache: 'no-cache' });
       if (r.ok) jsonData = await r.json();
     } catch (_) {}
 
