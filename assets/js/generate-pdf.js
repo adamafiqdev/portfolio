@@ -145,13 +145,15 @@
     const experience = sd.experience || [];
     const initials   = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase() || 'AA';
 
-    const CATS = ['Programming Skill', 'Software', 'Hardware', 'AI Agent', 'Operating System'];
+    const CATS = ['Programming Skill', 'Database', 'Framework', 'Software', 'Hardware', 'Operating System', 'AI Agent'];
     const CAT_LABELS = {
       'Programming Skill': 'Programming Skills',
+      'Database':          'Databases',
+      'Framework':         'Frameworks',
       'Software':          'Software',
       'Hardware':          'Hardware',
-      'AI Agent':          'AI & Agents',
       'Operating System':  'Operating Systems',
+      'AI Agent':          'AI & Agents',
     };
     const techGroups = {};
     techStack.forEach(t => {
@@ -632,13 +634,15 @@ ${baseCSS()}
     const experience = sd.experience || [];
     const services   = sd.services   || [];
 
-    const CV_CATS = ['Programming Skill', 'Software', 'Hardware', 'AI Agent', 'Operating System'];
+    const CV_CATS = ['Programming Skill', 'Database', 'Framework', 'Software', 'Hardware', 'Operating System', 'AI Agent'];
     const CV_CAT_LABELS = {
       'Programming Skill': 'Programming Skills',
+      'Database':          'Databases',
+      'Framework':         'Frameworks',
       'Software':          'Software',
       'Hardware':          'Hardware',
-      'AI Agent':          'AI & Agents',
       'Operating System':  'Operating Systems',
+      'AI Agent':          'AI & Agents',
     };
     const cvTechGroups = {};
     techStack.forEach(t => {

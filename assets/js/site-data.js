@@ -96,13 +96,15 @@
   function applyTechStack(techStack) {
     const grid = document.getElementById('techGrid');
     if (!grid || !techStack?.length) return;
-    const CATS = ['Programming Skill', 'Software', 'Hardware', 'AI Agent', 'Operating System'];
+    const CATS = ['Programming Skill', 'Database', 'Framework', 'Software', 'Hardware', 'Operating System', 'AI Agent'];
     const CAT_LABELS = {
       'Programming Skill': 'Programming Skills',
+      'Database':          'Databases',
+      'Framework':         'Frameworks',
       'Software':          'Software',
       'Hardware':          'Hardware',
-      'AI Agent':          'AI & Agents',
       'Operating System':  'Operating Systems',
+      'AI Agent':          'AI & Agents',
     };
     const delays = ['', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4'];
 

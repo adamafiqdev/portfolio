@@ -859,10 +859,12 @@
                   <label class="form-label">Category</label>
                   <select class="form-control tech-cat" data-i="${i}">
                     <option value="Programming Skill"${(t.category||'Programming Skill')==='Programming Skill'?' selected':''}>Programming Skill</option>
+                    <option value="Database"${t.category==='Database'?' selected':''}>Database</option>
+                    <option value="Framework"${t.category==='Framework'?' selected':''}>Framework</option>
                     <option value="Software"${t.category==='Software'?' selected':''}>Software</option>
                     <option value="Hardware"${t.category==='Hardware'?' selected':''}>Hardware</option>
-                    <option value="AI Agent"${t.category==='AI Agent'?' selected':''}>AI Agent</option>
                     <option value="Operating System"${t.category==='Operating System'?' selected':''}>Operating System</option>
+                    <option value="AI Agent"${t.category==='AI Agent'?' selected':''}>AI Agent</option>
                   </select>
                 </div>
               </div>
