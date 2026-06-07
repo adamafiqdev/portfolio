@@ -162,8 +162,14 @@
       techGroups[cat].push(t);
     });
 
-    const featured = projects.filter(p => p.featured);
-    const others   = projects.filter(p => !p.featured);
+    const catOrder = { 'dashboard': 0, 'internal-tools': 1 };
+    const sortByCat = (a, b) => {
+      const oa = catOrder[a.category] ?? 2;
+      const ob = catOrder[b.category] ?? 2;
+      return oa - ob;
+    };
+    const featured = projects.filter(p => p.featured).sort(sortByCat);
+    const others   = projects.filter(p => !p.featured).sort(sortByCat);
     const display  = [...featured, ...others];
 
     return `<style>
