@@ -572,8 +572,8 @@ ${baseCSS()}
   </div>
 
   <!-- FOOTER: own page, pinned to bottom via table vertical-align -->
-  <!-- 267mm = A4 (297mm) minus top+bottom margins (15mm each) -->
-  <div style="page-break-before:always;display:table;width:210mm;height:267mm;table-layout:fixed;overflow:hidden;">
+  <!-- 281mm = A4 (297mm) minus top+bottom margins (8mm each) -->
+  <div style="page-break-before:always;display:table;width:210mm;height:281mm;table-layout:fixed;overflow:hidden;">
     <div style="display:table-cell;vertical-align:bottom;">
       <div class="pf-footer">
         <span class="pf-footer-title">Let's Build Something Together</span>
@@ -877,7 +877,7 @@ ${baseCSS()}
     await new Promise(r => setTimeout(r, 250));
 
     const opts = {
-      margin: [15, 0, 15, 0], // 15mm top/bottom spacing on every A4 page
+      margin: [8, 0, 8, 0], // 8mm top/bottom spacing on every A4 page
       filename: isPF ? 'Adam_Afiq_Portfolio.pdf' : 'Adam_Afiq_CV.pdf',
       image: { type: 'jpeg', quality: 0.97 },
       html2canvas: {
