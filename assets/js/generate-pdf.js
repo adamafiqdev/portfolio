@@ -503,13 +503,6 @@ ${baseCSS()}
     <div class="pf-main">
       <span class="pf-sec">Profile</span>
       ${bio.map(p => `<p class="pf-bio">${p}</p>`).join('')}
-      <div class="pf-stats">
-        ${stats.map(s => `
-          <div class="pf-stat-cell">
-            <span class="pf-stat-n">${s.target}${s.suffix || ''}</span>
-            <span class="pf-stat-l">${s.label}</span>
-          </div>`).join('')}
-      </div>
 
       <span class="pf-sec" style="margin-top:22px">Experience &amp; Background</span>
       ${experience.map((exp, i) => `
