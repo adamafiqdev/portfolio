@@ -130,7 +130,7 @@
   }
 
   // ── Portfolio HTML ───────────────────────────────────────
-  function portfolioHTML(projects, sd, extraPhone, extraLocation) {
+  function portfolioHTML(projects, sd, extraPhone, extraLocation, profileImage) {
     const about    = sd.about    || {};
     const contact  = sd.contact  || {};
     const name     = about.name     || '';
@@ -478,9 +478,11 @@ ${baseCSS()}
       <span class="pf-name">${name}</span>
       <span class="pf-role">${role}</span>
     </div>
-    <div class="pf-header-deco">
-      <span class="pf-deco-mono">${initials}</span>
-      <span class="pf-deco-lbl">Portfolio</span>
+    <div class="pf-header-deco" style="${profileImage ? 'padding:0;overflow:hidden;' : ''}">
+      ${profileImage
+        ? `<img src="${profileImage}" alt="Profile" style="width:100%;height:100%;object-fit:cover;display:block;">`
+        : `<span class="pf-deco-mono">${initials}</span><span class="pf-deco-lbl">Portfolio</span>`
+      }
     </div>
   </div>
 
@@ -603,7 +605,7 @@ ${baseCSS()}
   }
 
   // ── CV HTML ──────────────────────────────────────────────
-  function cvHTML(sd, extraPhone, extraLocation) {
+  function cvHTML(sd, extraPhone, extraLocation, profileImage) {
     const about    = sd.about    || {};
     const contact  = sd.contact  || {};
     const name     = about.name     || '';
@@ -727,6 +729,10 @@ ${baseCSS()}
       <span class="cv-name">${name}</span>
       <span class="cv-title">${role}</span>
     </div>
+    ${profileImage ? `
+    <div style="display:table-cell;width:72px;vertical-align:middle;text-align:center;padding-left:16px;">
+      <img src="${profileImage}" alt="Profile" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #4f46e5;display:inline-block;">
+    </div>` : ''}
     <div class="cv-header-right">
       ${email    ? `<span class="cv-ci">${email}</span>`    : ''}
       ${phone    ? `<span class="cv-ci">${phone}</span>`    : ''}
@@ -834,6 +840,13 @@ ${baseCSS()}
       const submitBtn   = document.getElementById('pdfModalSubmit');
       const cancelBtn   = document.getElementById('pdfModalCancel');
       const closeBtn    = document.getElementById('pdfModalClose');
+      const imgInput    = document.getElementById('pdfProfileImg');
+      const imgZone     = document.getElementById('pdfImgZone');
+      const imgPreview  = document.getElementById('pdfImgPreview');
+      const imgClear    = document.getElementById('pdfImgClear');
+
+      const placeholderHTML = imgPreview.innerHTML;
+      let profileImage = '';
 
       // Reset state
       phoneEl.value    = '';
@@ -841,6 +854,31 @@ ${baseCSS()}
       passwordEl.value = '';
       pwWrap.hidden    = true;
       pwErr.hidden     = true;
+      imgInput.value   = '';
+      profileImage     = '';
+      imgPreview.innerHTML = placeholderHTML;
+      imgClear.hidden  = true;
+
+      // Image selection
+      imgInput.addEventListener('change', function onImgChange() {
+        const file = imgInput.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+          profileImage = e.target.result;
+          imgPreview.innerHTML = `<img src="${profileImage}" alt="Profile photo" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+          imgClear.hidden = false;
+        };
+        reader.readAsDataURL(file);
+        imgInput.removeEventListener('change', onImgChange);
+      });
+
+      imgClear.onclick = () => {
+        imgInput.value  = '';
+        profileImage    = '';
+        imgPreview.innerHTML = placeholderHTML;
+        imgClear.hidden = true;
+      };
 
       function checkFields() {
         const hasExtra = phoneEl.value.trim() || locationEl.value.trim();
@@ -851,7 +889,6 @@ ${baseCSS()}
       locationEl.addEventListener('input', checkFields);
 
       overlay.setAttribute('aria-hidden', 'false');
-      phoneEl.focus();
 
       function cleanup() {
         phoneEl.removeEventListener('input', checkFields);
@@ -873,7 +910,7 @@ ${baseCSS()}
           }
         }
         cleanup();
-        resolve({ phone, location });
+        resolve({ phone, location, profileImage });
       }
 
       submitBtn.onclick  = submit;
@@ -885,7 +922,7 @@ ${baseCSS()}
   }
 
   // ── Core generator ───────────────────────────────────────
-  async function generate(type, extraPhone, extraLocation) {
+  async function generate(type, extraPhone, extraLocation, profileImage) {
     if (typeof html2pdf === 'undefined') {
       toast('PDF library not loaded — check your internet connection and refresh.', 'error');
       return;
@@ -947,8 +984,8 @@ ${baseCSS()}
     const container = document.createElement('div');
     container.style.cssText = 'width:794px;background:#fff;margin:0;padding:0;';
     container.innerHTML = isPF
-      ? portfolioHTML(projects, siteData, extraPhone, extraLocation)
-      : cvHTML(siteData, extraPhone, extraLocation);
+      ? portfolioHTML(projects, siteData, extraPhone, extraLocation, profileImage)
+      : cvHTML(siteData, extraPhone, extraLocation, profileImage);
     document.body.appendChild(container);
 
     // Give the browser TWO paint cycles to lay out & render before capture.
@@ -988,8 +1025,8 @@ ${baseCSS()}
   // ── Public API ───────────────────────────────────────────
   async function startDownload(type) {
     try {
-      const { phone, location } = await showInfoModal();
-      await generate(type, phone, location);
+      const { phone, location, profileImage } = await showInfoModal();
+      await generate(type, phone, location, profileImage);
     } catch (_) {
       // user cancelled — do nothing
     }

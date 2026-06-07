@@ -883,8 +883,22 @@
       <h3 class="pdf-modal-title" id="pdfModalTitle">Download PDF</h3>
       <button class="pdf-modal-close" id="pdfModalClose" aria-label="Close modal">&times;</button>
     </div>
-    <p class="pdf-modal-desc">Optionally add your contact details to include them in the PDF. If provided, a password is required.</p>
+    <p class="pdf-modal-desc">Optionally add your details to include them in the PDF. Phone/location requires a password.</p>
     <div class="pdf-modal-fields">
+
+      <!-- Profile image upload -->
+      <div class="pdf-modal-label">
+        Profile Photo <span class="pdf-modal-opt">optional</span>
+        <input type="file" id="pdfProfileImg" accept="image/*" style="display:none">
+        <label for="pdfProfileImg" class="pdf-modal-img-zone" id="pdfImgZone">
+          <div id="pdfImgPreview" class="pdf-modal-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted)"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span>Click to upload photo</span>
+          </div>
+        </label>
+        <button type="button" id="pdfImgClear" class="pdf-modal-img-clear" hidden>Remove photo</button>
+      </div>
+
       <label class="pdf-modal-label">
         Phone Number <span class="pdf-modal-opt">optional</span>
         <input type="tel" id="pdfPhone" class="pdf-modal-input" placeholder="+60 12-345 6789" autocomplete="tel">
@@ -913,6 +927,6 @@
 <script src="assets/js/main.js?v=1"></script>
 <script src="assets/js/projects.js?v=1"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
-<script src="assets/js/generate-pdf.js?v=13"></script>
+<script src="assets/js/generate-pdf.js?v=14"></script>
 </body>
 </html>
