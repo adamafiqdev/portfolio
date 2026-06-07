@@ -305,15 +305,10 @@ ${baseCSS()}
 
 /* ---- PROJECT CARDS (alternating image/details) ---- */
 .pdf-root .pf-proj-row {
-  display: table;
   width: 100%;
-  table-layout: fixed;
   margin-bottom: 16px;
   page-break-inside: avoid;
-}
-.pdf-root .pf-proj-row-cell {
-  display: table-cell;
-  vertical-align: top;
+  border-collapse: collapse;
 }
 .pdf-root .pf-proj-details {
   border: 1px solid #e2e8f0;
@@ -545,13 +540,17 @@ ${baseCSS()}
           </div>`;
         const imageCell = `<div class="pf-proj-img-wrap"><img src="${p.coverImage}" alt=""></div>`;
 
-        const detailsWidth = 'width:75%';
-        const imageWidth   = 'width:25%';
+        const leftContent  = isEven ? detailsCell : imageCell;
+        const rightContent = isEven ? imageCell   : detailsCell;
+        const leftW  = isEven ? '75%' : '25%';
+        const rightW = isEven ? '25%' : '75%';
         return `
-          <div class="pf-proj-row">
-            <div class="pf-proj-row-cell" style="${isEven ? detailsWidth+';padding-right:7px' : imageWidth+';padding-right:7px'}">${isEven ? detailsCell : imageCell}</div>
-            <div class="pf-proj-row-cell" style="${isEven ? imageWidth+';padding-left:7px'   : detailsWidth+';padding-left:7px'}">${isEven ? imageCell   : detailsCell}</div>
-          </div>`;
+          <table class="pf-proj-row" style="table-layout:fixed;width:100%">
+            <tr>
+              <td style="width:${leftW};vertical-align:top;padding-right:7px">${leftContent}</td>
+              <td style="width:${rightW};vertical-align:top;padding-left:7px">${rightContent}</td>
+            </tr>
+          </table>`;
       }).join('');
     })()}
   </div>
