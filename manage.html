@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Manager — Adam Afiq Portfolio</title>
+  <title>Portfolio Manager — Adam Afiq</title>
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Fonts -->
@@ -35,7 +35,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="9 18 15 12 9 6"/>
         </svg>
-        <span>Project Manager</span>
+        <span>Portfolio Manager</span>
       </div>
     </div>
 
@@ -72,10 +72,38 @@
   </header>
 
   <!-- Body -->
-  <div class="manage-body">
+  <div class="manage-body" id="manageBody">
 
-    <!-- Sidebar -->
-    <aside class="manage-sidebar">
+    <!-- Section Nav (spans full width) -->
+    <nav class="section-nav" id="sectionNav">
+      <button class="snav-btn active" data-sec="projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Projects
+      </button>
+      <button class="snav-btn" data-sec="about">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        About Me
+      </button>
+      <button class="snav-btn" data-sec="services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Services
+      </button>
+      <button class="snav-btn" data-sec="techstack">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+        Tech Stack
+      </button>
+      <button class="snav-btn" data-sec="experience">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Experience
+      </button>
+      <button class="snav-btn" data-sec="contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </button>
+    </nav>
+
+    <!-- Sidebar (projects only) -->
+    <aside class="manage-sidebar" id="manageSidebar">
       <div class="sidebar-top">
         <button class="btn btn-primary btn-full" id="addProjectBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">

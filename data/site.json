@@ -1,0 +1,76 @@
+{
+  "_v": 1,
+  "about": {
+    "name": "Muhammad Adam Afiq",
+    "role": "Software Developer",
+    "yearsExperience": 3,
+    "bio": [
+      "I'm <strong>Adam Afiq</strong>, a Software Developer focused on building practical systems that solve real business problems. I specialize in <strong>dashboards and monitoring applications</strong> that give teams instant visibility into their data, <strong>internal tools</strong> that automate workflows, and <strong>web applications</strong> built for reliability and usability.",
+      "My approach is straightforward: understand the problem deeply, build a clean solution, and deliver something that actually gets used. I care about performance, maintainability, and making complex systems feel simple."
+    ],
+    "stats": [
+      { "target": 15, "suffix": "+",   "label": "Projects Completed" },
+      { "target": 10, "suffix": "+",   "label": "Satisfied Clients"   },
+      { "target": 99, "suffix": ".9%", "label": "Avg. System Uptime"  },
+      { "target": 50, "suffix": "+",   "label": "Devices Monitored"   }
+    ]
+  },
+  "services": [
+    { "id": "svc-1", "title": "Dashboard Development",  "desc": "Custom analytics dashboards that turn raw data into clear, interactive visualizations — built to be fast, intuitive, and always up to date.",                                                                        "icon": "grid"      },
+    { "id": "svc-2", "title": "Monitoring Systems",     "desc": "Real-time monitoring solutions that track system health, network performance, and IoT sensors — with alerts when things need attention.",                                                                          "icon": "activity"  },
+    { "id": "svc-3", "title": "Internal Tools",         "desc": "Purpose-built web applications that streamline your team's workflows — inventory systems, approval flows, staff portals, and more.",                                                                               "icon": "tool"      },
+    { "id": "svc-4", "title": "Reporting Systems",      "desc": "Automated reporting platforms that generate and distribute scheduled reports — PDF exports, Excel summaries, and email delivery built in.",                                                                        "icon": "file-text" },
+    { "id": "svc-5", "title": "Web Applications",       "desc": "Robust, user-friendly web applications built for reliability and performance — from simple CRUD tools to multi-user systems with role-based access.",                                                             "icon": "globe"     },
+    { "id": "svc-6", "title": "Automation Solutions",   "desc": "Smart automation systems that eliminate repetitive tasks — data collection scripts, scheduled jobs, notification bots, and workflow integrations.",                                                               "icon": "terminal"  }
+  ],
+  "techStack": [
+    { "id": "tech-1",  "name": "PHP",          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",          "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-2",  "name": "JavaScript",   "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-3",  "name": "Python",       "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",     "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-4",  "name": "MySQL",        "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",       "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-5",  "name": "HTML",         "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",       "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-6",  "name": "CSS",          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",         "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-7",  "name": "Bootstrap",    "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg","iconDataUrl": "", "emoji": "" },
+    { "id": "tech-8",  "name": "Git",          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",           "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-9",  "name": "GitHub",       "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",     "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-10", "name": "Raspberry Pi", "iconUrl": "",                                                                                           "iconDataUrl": "", "emoji": "🍓" },
+    { "id": "tech-11", "name": "Laravel",      "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",   "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-12", "name": "ReactJS",      "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",       "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-13", "name": "Docker",       "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",     "iconDataUrl": "", "emoji": "" },
+    { "id": "tech-14", "name": "Jetson",       "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nvidia/nvidia-original.svg",     "iconDataUrl": "", "emoji": "" }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "period":  "2023 — Present",
+      "role":    "Software Developer",
+      "company": "Freelance / Independent",
+      "desc":    "Developing custom monitoring dashboards, internal business tools, and web applications for clients across various industries. Delivering end-to-end solutions from requirements gathering through deployment and ongoing support.",
+      "tags":    ["Dashboard Development", "Monitoring Systems", "IoT Integration", "Internal Tools"]
+    },
+    {
+      "id": "exp-2",
+      "period":  "2021 — 2023",
+      "role":    "Junior Software Developer",
+      "company": "Previous Company",
+      "desc":    "Built and maintained web-based business applications using PHP and MySQL. Worked closely with operations teams to understand requirements and translate them into functional software solutions. Developed reporting modules and data management tools.",
+      "tags":    ["PHP", "MySQL", "Web Applications", "Reporting"]
+    },
+    {
+      "id": "exp-3",
+      "period":  "2017 — 2021",
+      "role":    "Diploma in Computer Science",
+      "company": "University / Polytechnic",
+      "desc":    "Studied core software development fundamentals including programming, databases, networking, and system design. Developed multiple academic projects covering web application development and basic IoT systems.",
+      "tags":    ["Computer Science", "Programming", "Databases", "Networking"]
+    }
+  ],
+  "contact": {
+    "email":        "muhdadamafiq@gmail.com",
+    "github":       "github.com/muhdadamafiq",
+    "location":     "Malaysia",
+    "formAction":   "https://formspree.io/f/YOUR_FORM_ID",
+    "availability": "Available for new projects",
+    "responseTime": "24 hours"
+  }
+}

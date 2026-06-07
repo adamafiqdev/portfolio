@@ -126,9 +126,50 @@ a { color: inherit; text-decoration: none; }
 .manage-body {
   display: grid;
   grid-template-columns: 320px 1fr;
+  grid-template-rows: 49px 1fr;
   overflow: hidden;
   height: calc(100vh - 64px);
 }
+
+/* Section Nav */
+.section-nav {
+  grid-column: 1 / -1;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.section-nav::-webkit-scrollbar { display: none; }
+
+.snav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.snav-btn:hover { color: var(--text-primary); background: var(--bg-card-hover); }
+.snav-btn.active { color: var(--accent-hover); background: var(--accent-soft); }
+.snav-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* Hide sidebar when editing site sections */
+.manage-body.no-sidebar {
+  grid-template-columns: 1fr;
+}
+.manage-body.no-sidebar .manage-sidebar { display: none; }
 
 /* ── Sidebar ─────────────────────────────────────────────── */
 .manage-sidebar {
@@ -672,13 +713,95 @@ select.form-control { cursor: pointer; }
 
 .instruction-box strong { color: var(--accent-hover); }
 
+/* ── Section Item Cards (services, tech, experience) ─────── */
+.section-item-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.section-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.section-item-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-item-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-item-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.section-item-body {
+  padding: 14px 16px;
+}
+
+/* ── Tech Stack Editor ────────────────────────────────────── */
+.tech-item-card { overflow: visible; }
+
+.tech-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.tech-icon-preview {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.tech-icon-preview img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .manage-body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; height: auto; }
-  .manage-sidebar { height: 260px; border-right: none; border-bottom: 1px solid var(--border); }
+  .manage-body { grid-template-columns: 1fr; grid-template-rows: 49px 200px 1fr; height: auto; }
+  .manage-sidebar { height: 200px; border-right: none; border-bottom: 1px solid var(--border); }
   .manage-content { overflow: visible; }
   .form-row { grid-template-columns: 1fr; }
   .manage-breadcrumb { display: none; }
+  .tech-item-row { flex-wrap: wrap; }
 }
 
 /* ── Scrollbars ────────────────────────────────────────────── */

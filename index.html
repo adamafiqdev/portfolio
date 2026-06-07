@@ -101,7 +101,7 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          Available for new projects
+          <span id="heroBadgeText">Available for new projects</span>
         </div>
 
         <h1 class="hero-title">
@@ -236,13 +236,13 @@
         <h2 class="section-title reveal reveal-delay-1">
           Turning complexity into<br>clear, working software
         </h2>
-        <p class="about-bio reveal reveal-delay-2">
+        <p class="about-bio reveal reveal-delay-2" id="aboutBio1">
           I'm <strong>Adam Afiq</strong>, a Software Developer focused on building practical systems
           that solve real business problems. I specialize in <strong>dashboards and monitoring applications</strong>
           that give teams instant visibility into their data, <strong>internal tools</strong> that automate
           workflows, and <strong>web applications</strong> built for reliability and usability.
         </p>
-        <p class="about-bio reveal reveal-delay-2" style="margin-top: -8px; margin-bottom: 40px;">
+        <p class="about-bio reveal reveal-delay-2" id="aboutBio2" style="margin-top: -8px; margin-bottom: 40px;">
           My approach is straightforward: understand the problem deeply, build a clean solution,
           and deliver something that actually gets used. I care about performance, maintainability,
           and making complex systems feel simple.
@@ -295,7 +295,7 @@
       and efficiency in their daily operations.
     </p>
 
-    <div class="services-grid">
+    <div class="services-grid" id="servicesGrid">
 
       <!-- Dashboard Development -->
       <div class="service-card reveal">
@@ -422,7 +422,7 @@
       </p>
     </div>
 
-    <div class="tech-grid">
+    <div class="tech-grid" id="techGrid">
       <div class="tech-item reveal">
         <div class="tech-icon">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" loading="lazy">
@@ -519,7 +519,7 @@
     <div class="section-label reveal">Background</div>
     <h2 class="section-title reveal reveal-delay-1">Experience</h2>
 
-    <div class="timeline">
+    <div class="timeline" id="experienceTimeline">
       <div class="timeline-item reveal reveal-delay-1">
         <div class="timeline-dot">
           <div class="timeline-dot-inner"></div>
@@ -717,7 +717,7 @@
             </div>
             <div>
               <div class="contact-method-label">Email</div>
-              <div class="contact-method-value">muhdadamafiq@gmail.com</div>
+              <div class="contact-method-value" id="contactEmail">muhdadamafiq@gmail.com</div>
             </div>
           </div>
 
@@ -729,7 +729,7 @@
             </div>
             <div>
               <div class="contact-method-label">GitHub</div>
-              <div class="contact-method-value">github.com/muhdadamafiq</div>
+              <div class="contact-method-value" id="contactGithub">github.com/muhdadamafiq</div>
             </div>
           </div>
 
@@ -742,7 +742,7 @@
             </div>
             <div>
               <div class="contact-method-label">Location</div>
-              <div class="contact-method-value">Malaysia</div>
+              <div class="contact-method-value" id="contactLocation">Malaysia</div>
             </div>
           </div>
         </div>
@@ -898,6 +898,7 @@
 </style>
 
 <!-- Scripts -->
+<script src="assets/js/site-data.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/projects.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
