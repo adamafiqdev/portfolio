@@ -153,347 +153,469 @@
     return `<style>
 ${baseCSS()}
 
-/* ---- COVER ---- */
-.pdf-root .cover {
+/* ---- HEADER ---- */
+.pdf-root .pf-header {
+  display: table;
   width: 210mm;
-  height: 297mm;
-  background: linear-gradient(150deg,#1e1b4b 0%,#312e81 45%,#4338ca 100%);
-  color: #fff;
-  padding: 64px 56px;
-  page-break-after: always;
-  overflow: hidden;
-  position: relative;
+  table-layout: fixed;
 }
-.pdf-root .cover-top { margin-bottom: auto; }
-.pdf-root .cover-logo {
-  width: 54px; height: 54px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 12px;
-  font-size: 22pt; font-weight: 800;
-  text-align: center; line-height: 54px;
-  margin-bottom: 52px;
-  letter-spacing: -1px;
-}
-.pdf-root .cover-name {
-  font-size: 36pt; font-weight: 800;
-  letter-spacing: -1px; line-height: 1.1;
-  margin-bottom: 10px;
-}
-.pdf-root .cover-role {
-  font-size: 15pt; font-weight: 300;
-  opacity: 0.8; letter-spacing: 2px;
-  margin-bottom: 36px;
-}
-.pdf-root .cover-tagline {
-  font-size: 11pt; opacity: 0.7;
-  line-height: 1.7; max-width: 360px;
-  margin-bottom: 0;
-}
-.pdf-root .cover-bottom { margin-top: 80px; }
-.pdf-root .cover-rule {
-  width: 56px; height: 2px;
-  background: rgba(255,255,255,0.3);
-  margin-bottom: 24px;
-}
-.pdf-root .cover-lbl {
-  font-size: 8.5pt; letter-spacing: 2px;
-  text-transform: uppercase; opacity: 0.45;
-  margin-bottom: 12px;
-}
-.pdf-root .cover-ci { font-size: 10pt; opacity: 0.8; margin-bottom: 6px; }
-
-/* ---- PAGE ---- */
-.pdf-root .pdf-page { width: 210mm; padding: 52px 56px; }
-
-/* ---- SECTION LABELS ---- */
-.pdf-root .sec-label {
-  font-size: 8.5pt; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: #4f46e5; margin-bottom: 8px;
-}
-.pdf-root .sec-title {
-  font-size: 22pt; font-weight: 800; letter-spacing: -0.5px;
-  color: #09090b; margin-bottom: 6px; line-height: 1.15;
-}
-.pdf-root .sec-rule { height: 2px; background: #ede9fe; margin: 20px 0 28px; }
-
-/* ---- ABOUT TEXT ---- */
-.pdf-root .about-p {
-  font-size: 11pt; color: #374151;
-  line-height: 1.78; margin-bottom: 14px;
-}
-
-/* ---- STATS (table layout for reliable rendering) ---- */
-.pdf-root .stats-table {
-  display: table; width: 100%;
-  table-layout: fixed; border-collapse: separate;
-  border-spacing: 12px 0; margin: 32px 0;
-}
-.pdf-root .stat-cell {
+.pdf-root .pf-header-main {
   display: table-cell;
-  background: #f5f3ff; border-radius: 10px;
-  padding: 18px 12px; text-align: center;
+  padding: 34px 44px 26px;
+  vertical-align: middle;
+  border-bottom: 3px solid #2563eb;
 }
-.pdf-root .stat-n {
-  font-size: 22pt; font-weight: 800;
-  color: #4f46e5; line-height: 1;
-  margin-bottom: 5px; display: block;
-}
-.pdf-root .stat-l {
-  font-size: 8.5pt; color: #71717a;
-  font-weight: 600; line-height: 1.3; display: block;
-}
-
-/* ---- SKILLS (table layout) ---- */
-.pdf-root .skills-row {
-  display: table; width: 100%;
-  table-layout: fixed; border-collapse: separate;
-  border-spacing: 14px 14px; margin-top: -14px;
-}
-.pdf-root .sg {
+.pdf-root .pf-header-deco {
   display: table-cell;
-  background: #f9fafb; border-left: 3px solid #4f46e5;
-  border-radius: 8px; padding: 14px 16px;
+  width: 148px;
+  background: linear-gradient(150deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 3px solid #2563eb;
+}
+.pdf-root .pf-name {
+  font-size: 23pt;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #0f172a;
+  display: block;
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+.pdf-root .pf-role {
+  font-size: 12pt;
+  font-weight: 600;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 13px;
+}
+.pdf-root .pf-contact-row {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.pdf-root .pf-contact-cell {
+  display: table-cell;
+  font-size: 8.5pt;
+  color: #4b5563;
   vertical-align: top;
 }
-.pdf-root .sg-title {
-  font-size: 8.5pt; font-weight: 700; color: #4f46e5;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  margin-bottom: 9px; display: block;
+.pdf-root .pf-deco-mono {
+  font-size: 28pt;
+  font-weight: 900;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -2px;
+  display: block;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.pdf-root .pf-deco-lbl {
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  display: block;
+}
+
+/* ---- PAGE ---- */
+.pdf-root .pf-page { width: 210mm; padding: 30px 44px 22px; }
+.pdf-root .pf-page.page-break { page-break-before: always; }
+
+/* ---- SECTION HEADING ---- */
+.pdf-root .pf-sec {
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: block;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #bfdbfe;
+  margin-bottom: 16px;
+}
+.pdf-root .pf-sec-gap { margin-top: 20px; }
+
+/* ---- BIO ---- */
+.pdf-root .pf-bio {
+  font-size: 10.5pt;
+  color: #374151;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+/* ---- STATS ---- */
+.pdf-root .pf-stats {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 10px 0;
+  margin: 18px 0 24px;
+}
+.pdf-root .pf-stat-cell {
+  display: table-cell;
+  border-top: 3px solid #2563eb;
+  padding: 10px 6px 8px;
+  text-align: center;
+}
+.pdf-root .pf-stat-n {
+  font-size: 18pt;
+  font-weight: 800;
+  color: #1e40af;
+  line-height: 1;
+  display: block;
+  margin-bottom: 4px;
+}
+.pdf-root .pf-stat-l {
+  font-size: 7.5pt;
+  color: #6b7280;
+  font-weight: 600;
+  line-height: 1.3;
+  display: block;
+}
+
+/* ---- SKILLS ---- */
+.pdf-root .pf-sk-row {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 11px 11px;
+  margin-top: -11px;
+}
+.pdf-root .pf-sk-cell {
+  display: table-cell;
+  vertical-align: top;
+  border-left: 3px solid #2563eb;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+.pdf-root .pf-sk-cat {
+  font-size: 8pt;
+  font-weight: 700;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #dbeafe;
+  margin-bottom: 8px;
+}
+.pdf-root .pf-sk-item {
+  font-size: 9pt;
+  color: #334155;
+  display: block;
+  margin-bottom: 4px;
 }
 
 /* ---- PROJECTS ---- */
-.pdf-root .proj-item {
-  border: 1px solid #e5e7eb; border-radius: 10px;
-  overflow: hidden; margin-bottom: 20px;
+.pdf-root .pf-proj {
+  margin-bottom: 18px;
   page-break-inside: avoid;
+  padding: 13px 15px;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #2563eb;
+  background: #fafafa;
 }
-.pdf-root .proj-head {
-  padding: 16px 20px; background: #f9fafb;
-  border-bottom: 1px solid #f3f4f6;
+.pdf-root .pf-proj-meta {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  margin-bottom: 5px;
 }
-.pdf-root .proj-cat {
-  font-size: 8pt; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; color: #4f46e5;
-  margin-bottom: 3px; display: block;
+.pdf-root .pf-proj-meta-l { display: table-cell; vertical-align: middle; }
+.pdf-root .pf-proj-meta-r {
+  display: table-cell;
+  width: 90px;
+  text-align: right;
+  vertical-align: middle;
 }
-.pdf-root .proj-name {
-  font-size: 13pt; font-weight: 800; color: #09090b; display: block;
+.pdf-root .pf-proj-cat {
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: block;
 }
-.pdf-root .proj-body { padding: 14px 20px; }
-.pdf-root .proj-desc {
-  font-size: 10pt; color: #4b5563;
-  line-height: 1.7; margin-bottom: 12px;
+.pdf-root .pf-proj-name {
+  font-size: 11.5pt;
+  font-weight: 700;
+  color: #0f172a;
+  display: block;
+  margin-top: 2px;
+}
+.pdf-root .pf-proj-desc {
+  font-size: 9.5pt;
+  color: #4b5563;
+  line-height: 1.75;
+  margin-bottom: 7px;
+}
+.pdf-root .pf-proj-tech {
+  font-size: 8pt;
+  color: #1e40af;
+  font-weight: 600;
 }
 
 /* ---- EXPERIENCE ---- */
-.pdf-root .exp-item {
-  border-left: 3px solid #4f46e5; padding-left: 20px;
-  margin-bottom: 28px; page-break-inside: avoid;
+.pdf-root .pf-exp {
+  margin-bottom: 18px;
+  page-break-inside: avoid;
 }
-.pdf-root .exp-item:last-child { margin-bottom: 0; }
-.pdf-root .exp-period {
-  font-size: 8.5pt; font-weight: 700; color: #4f46e5;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  margin-bottom: 4px; display: block;
+.pdf-root .pf-exp:last-child { margin-bottom: 0; }
+.pdf-root .pf-exp-hdr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  margin-bottom: 5px;
 }
-.pdf-root .exp-role {
-  font-size: 13pt; font-weight: 700; color: #09090b;
-  margin-bottom: 2px; display: block;
+.pdf-root .pf-exp-hdr-l { display: table-cell; vertical-align: top; }
+.pdf-root .pf-exp-hdr-r {
+  display: table-cell;
+  width: 112px;
+  text-align: right;
+  vertical-align: top;
 }
-.pdf-root .exp-company {
-  font-size: 10.5pt; color: #6b7280;
-  margin-bottom: 10px; display: block;
+.pdf-root .pf-exp-role {
+  font-size: 11.5pt;
+  font-weight: 700;
+  color: #0f172a;
+  display: block;
+  margin-bottom: 1px;
 }
-.pdf-root .exp-desc { font-size: 10pt; color: #4b5563; line-height: 1.7; }
-.pdf-root .exp-tags { margin-top: 10px; }
+.pdf-root .pf-exp-co {
+  font-size: 9.5pt;
+  color: #4b5563;
+  display: block;
+}
+.pdf-root .pf-exp-period {
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: #1e40af;
+  background: #dbeafe;
+  padding: 3px 8px;
+  display: inline-block;
+}
+.pdf-root .pf-exp-desc {
+  font-size: 9.5pt;
+  color: #4b5563;
+  line-height: 1.78;
+  margin-top: 6px;
+}
+.pdf-root .pf-exp-tags {
+  margin-top: 6px;
+  font-size: 8pt;
+  color: #6b7280;
+  font-style: italic;
+}
+.pdf-root .pf-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 14px 0;
+}
 
-/* ---- CONTACT FOOTER ---- */
-.pdf-root .contact-footer {
-  background: #1e1b4b; color: #fff;
-  padding: 52px 56px;
+/* ---- FOOTER ---- */
+.pdf-root .pf-footer {
+  padding: 22px 44px 30px;
+  background: #eff6ff;
+  border-top: 2px solid #bfdbfe;
 }
-.pdf-root .cf-label {
-  font-size: 8.5pt; opacity: 0.5; text-transform: uppercase;
-  letter-spacing: 2px; margin-bottom: 8px; display: block;
+.pdf-root .pf-footer-title {
+  font-size: 13pt;
+  font-weight: 800;
+  color: #1e40af;
+  display: block;
+  margin-bottom: 4px;
 }
-.pdf-root .cf-title {
-  font-size: 20pt; font-weight: 800;
-  margin-bottom: 8px; letter-spacing: -0.3px; display: block;
+.pdf-root .pf-footer-sub {
+  font-size: 9.5pt;
+  color: #4b5563;
+  margin-bottom: 14px;
+  display: block;
 }
-.pdf-root .cf-sub {
-  font-size: 10.5pt; opacity: 0.7;
-  margin-bottom: 28px; display: block;
+.pdf-root .pf-footer-row {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
-.pdf-root .cf-grid { display: table; width: 100%; table-layout: fixed; }
-.pdf-root .cf-cell { display: table-cell; vertical-align: top; }
-.pdf-root .cf-item-lbl {
-  font-size: 8.5pt; opacity: 0.45; text-transform: uppercase;
-  letter-spacing: 1px; margin-bottom: 4px; display: block;
+.pdf-root .pf-footer-col { display: table-cell; vertical-align: top; }
+.pdf-root .pf-footer-lbl {
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 3px;
 }
-.pdf-root .cf-item-val { font-size: 10.5pt; font-weight: 600; display: block; }
+.pdf-root .pf-footer-val {
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: #1e40af;
+  display: block;
+}
 </style>
 
 <div class="pdf-root">
 
-  <!-- COVER PAGE -->
-  <div class="cover">
-    <div class="cover-logo">AA</div>
-    <div class="cover-name">Muhammad Adam Afiq</div>
-    <div class="cover-role">Software Developer</div>
-    <div class="cover-tagline">
-      Building dashboards, monitoring systems, and web applications
-      that transform complex data into actionable insights.
+  <!-- HEADER -->
+  <div class="pf-header">
+    <div class="pf-header-main">
+      <span class="pf-name">Muhammad Adam Afiq</span>
+      <span class="pf-role">Software Developer</span>
+      <div class="pf-contact-row">
+        <span class="pf-contact-cell">muhdadamafiq@gmail.com</span>
+        <span class="pf-contact-cell">github.com/muhdadamafiq</span>
+        <span class="pf-contact-cell">Malaysia</span>
+      </div>
     </div>
-    <div class="cover-bottom">
-      <div class="cover-rule"></div>
-      <div class="cover-lbl">Contact</div>
-      <div class="cover-ci">Email &nbsp;— muhdadamafiq@gmail.com</div>
-      <div class="cover-ci">GitHub — github.com/muhdadamafiq</div>
-      <div class="cover-ci">Location — Malaysia</div>
+    <div class="pf-header-deco">
+      <span class="pf-deco-mono">AA</span>
+      <span class="pf-deco-lbl">Portfolio</span>
     </div>
   </div>
 
-  <!-- ABOUT + SKILLS -->
-  <div class="pdf-page">
-    <div class="sec-label">Profile</div>
-    <div class="sec-title">About Me</div>
-    <div class="sec-rule"></div>
+  <!-- PROFILE + SKILLS -->
+  <div class="pf-page">
+    <span class="pf-sec">Profile</span>
+    <p class="pf-bio">I'm <strong>Adam Afiq</strong>, a Software Developer focused on building practical systems that solve real business problems. I specialise in <strong>dashboards and monitoring applications</strong> that give teams instant visibility into their data, <strong>internal tools</strong> that automate workflows, and <strong>web applications</strong> built for reliability and usability.</p>
+    <p class="pf-bio">My approach is straightforward: understand the problem deeply, build a clean solution, and deliver something that actually gets used. I care about performance, maintainability, and making complex systems feel simple.</p>
 
-    <p class="about-p">
-      I'm <strong>Adam Afiq</strong>, a Software Developer focused on building practical systems
-      that solve real business problems. I specialize in <strong>dashboards and monitoring
-      applications</strong> that give teams instant visibility into their data,
-      <strong>internal tools</strong> that automate workflows, and <strong>web applications</strong>
-      built for reliability and usability.
-    </p>
-    <p class="about-p">
-      My approach is straightforward: understand the problem deeply, build a clean solution,
-      and deliver something that actually gets used. I care about performance, maintainability,
-      and making complex systems feel simple.
-    </p>
-
-    <!-- Stats as table for reliable html2canvas rendering -->
-    <div class="stats-table">
-      <div class="stat-cell"><span class="stat-n">15+</span><span class="stat-l">Projects Completed</span></div>
-      <div class="stat-cell"><span class="stat-n">3+</span><span class="stat-l">Years Experience</span></div>
-      <div class="stat-cell"><span class="stat-n">10+</span><span class="stat-l">Satisfied Clients</span></div>
-      <div class="stat-cell"><span class="stat-n">50+</span><span class="stat-l">Devices Monitored</span></div>
-    </div>
-
-    <div class="sec-label" style="margin-top:32px;">Technical Skills</div>
-    <div class="sec-rule" style="margin-top:8px;"></div>
-
-    <!-- Skills as table rows for reliable rendering -->
-    <div class="skills-row">
-      <div class="sg">
-        <span class="sg-title">Languages</span>
-        <span class="tag">PHP</span><span class="tag">JavaScript</span>
-        <span class="tag">Python</span><span class="tag">HTML5</span>
-        <span class="tag">CSS3</span><span class="tag">SQL</span>
+    <div class="pf-stats">
+      <div class="pf-stat-cell">
+        <span class="pf-stat-n">15+</span>
+        <span class="pf-stat-l">Projects Completed</span>
       </div>
-      <div class="sg">
-        <span class="sg-title">Frameworks</span>
-        <span class="tag">Laravel</span><span class="tag">ReactJS</span>
-        <span class="tag">Bootstrap</span><span class="tag">Chart.js</span>
+      <div class="pf-stat-cell">
+        <span class="pf-stat-n">3+</span>
+        <span class="pf-stat-l">Years Experience</span>
+      </div>
+      <div class="pf-stat-cell">
+        <span class="pf-stat-n">10+</span>
+        <span class="pf-stat-l">Satisfied Clients</span>
+      </div>
+      <div class="pf-stat-cell">
+        <span class="pf-stat-n">50+</span>
+        <span class="pf-stat-l">Devices Monitored</span>
       </div>
     </div>
-    <div class="skills-row">
-      <div class="sg">
-        <span class="sg-title">Databases &amp; DevOps</span>
-        <span class="tag">MySQL</span><span class="tag">SQLite</span>
-        <span class="tag">Docker</span><span class="tag">Git</span>
-        <span class="tag">GitHub</span>
+
+    <span class="pf-sec pf-sec-gap">Technical Skills</span>
+    <div class="pf-sk-row">
+      <div class="pf-sk-cell">
+        <span class="pf-sk-cat">Languages</span>
+        <span class="pf-sk-item">PHP</span>
+        <span class="pf-sk-item">JavaScript</span>
+        <span class="pf-sk-item">Python</span>
+        <span class="pf-sk-item">HTML5 / CSS3</span>
+        <span class="pf-sk-item">SQL</span>
       </div>
-      <div class="sg">
-        <span class="sg-title">Specialisations</span>
-        <span class="tag">Dashboards</span><span class="tag">IoT</span>
-        <span class="tag">Raspberry Pi</span><span class="tag">Jetson</span>
-        <span class="tag">SNMP</span><span class="tag">MQTT</span>
+      <div class="pf-sk-cell">
+        <span class="pf-sk-cat">Frameworks</span>
+        <span class="pf-sk-item">Laravel</span>
+        <span class="pf-sk-item">ReactJS</span>
+        <span class="pf-sk-item">Bootstrap</span>
+        <span class="pf-sk-item">Chart.js</span>
+      </div>
+    </div>
+    <div class="pf-sk-row">
+      <div class="pf-sk-cell">
+        <span class="pf-sk-cat">Databases &amp; DevOps</span>
+        <span class="pf-sk-item">MySQL</span>
+        <span class="pf-sk-item">SQLite</span>
+        <span class="pf-sk-item">Docker</span>
+        <span class="pf-sk-item">Git / GitHub</span>
+      </div>
+      <div class="pf-sk-cell">
+        <span class="pf-sk-cat">Specialisations</span>
+        <span class="pf-sk-item">Dashboards &amp; Monitoring</span>
+        <span class="pf-sk-item">IoT / Raspberry Pi</span>
+        <span class="pf-sk-item">Jetson (NVIDIA)</span>
+        <span class="pf-sk-item">SNMP / MQTT / WebSocket</span>
       </div>
     </div>
   </div>
 
   <!-- PROJECTS -->
-  <div class="pdf-page page-break">
-    <div class="sec-label">Portfolio</div>
-    <div class="sec-title">Featured Projects</div>
-    <div class="sec-rule"></div>
+  <div class="pf-page page-break">
+    <span class="pf-sec">Featured Projects</span>
 
     ${display.length ? display.map(p => `
-      <div class="proj-item">
-        <div class="proj-head">
-          <span class="proj-cat">${p.category || 'Project'}</span>
-          <span class="proj-name">${p.title || ''}</span>
+      <div class="pf-proj">
+        <div class="pf-proj-meta">
+          <div class="pf-proj-meta-l">
+            <span class="pf-proj-cat">${p.category || 'Project'}</span>
+            <span class="pf-proj-name">${p.title || ''}</span>
+          </div>
         </div>
-        <div class="proj-body">
-          <p class="proj-desc">${p.longDescription || p.description || ''}</p>
-          <div>${(p.technologies || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
-        </div>
+        <p class="pf-proj-desc">${p.longDescription || p.description || ''}</p>
+        <span class="pf-proj-tech">Tech: ${(p.technologies || []).join(' &middot; ')}</span>
       </div>
     `).join('') : `
-      <p class="about-p">
-        Visit <strong>github.com/muhdadamafiq</strong> to explore all projects.
-      </p>
+      <p class="pf-bio">Visit <strong>github.com/muhdadamafiq</strong> to explore all projects.</p>
     `}
   </div>
 
   <!-- EXPERIENCE -->
-  <div class="pdf-page page-break">
-    <div class="sec-label">Background</div>
-    <div class="sec-title">Experience</div>
-    <div class="sec-rule"></div>
+  <div class="pf-page page-break">
+    <span class="pf-sec">Experience &amp; Background</span>
 
-    <div class="exp-item">
-      <span class="exp-period">2023 — Present</span>
-      <span class="exp-role">Software Developer</span>
-      <span class="exp-company">Freelance / Independent</span>
-      <p class="exp-desc">Developing custom monitoring dashboards, internal business tools, and web applications for clients across various industries. Delivering end-to-end solutions from requirements gathering through deployment and ongoing support.</p>
-      <div class="exp-tags">
-        <span class="tag">Dashboard Development</span><span class="tag">Monitoring Systems</span>
-        <span class="tag">IoT Integration</span><span class="tag">Internal Tools</span>
+    <div class="pf-exp">
+      <div class="pf-exp-hdr">
+        <div class="pf-exp-hdr-l">
+          <span class="pf-exp-role">Software Developer</span>
+          <span class="pf-exp-co">Freelance / Independent</span>
+        </div>
+        <div class="pf-exp-hdr-r"><span class="pf-exp-period">2023 — Present</span></div>
       </div>
+      <p class="pf-exp-desc">Developing custom monitoring dashboards, internal business tools, and web applications for clients across various industries. Delivering end-to-end solutions from requirements gathering through deployment and ongoing support.</p>
+      <div class="pf-exp-tags">Dashboard Development &middot; Monitoring Systems &middot; IoT Integration &middot; Internal Tools</div>
     </div>
+    <div class="pf-divider"></div>
 
-    <div class="exp-item">
-      <span class="exp-period">2021 — 2023</span>
-      <span class="exp-role">Junior Software Developer</span>
-      <span class="exp-company">Previous Company</span>
-      <p class="exp-desc">Built and maintained web-based business applications using PHP and MySQL. Worked closely with operations teams to translate requirements into functional software. Developed reporting modules and data management tools.</p>
-      <div class="exp-tags">
-        <span class="tag">PHP</span><span class="tag">MySQL</span>
-        <span class="tag">Web Applications</span><span class="tag">Reporting</span>
+    <div class="pf-exp">
+      <div class="pf-exp-hdr">
+        <div class="pf-exp-hdr-l">
+          <span class="pf-exp-role">Junior Software Developer</span>
+          <span class="pf-exp-co">Previous Company</span>
+        </div>
+        <div class="pf-exp-hdr-r"><span class="pf-exp-period">2021 — 2023</span></div>
       </div>
+      <p class="pf-exp-desc">Built and maintained web-based business applications using PHP and MySQL. Worked closely with operations teams to translate requirements into functional software. Developed reporting modules and data management tools.</p>
+      <div class="pf-exp-tags">PHP &middot; MySQL &middot; Web Applications &middot; Reporting</div>
     </div>
+    <div class="pf-divider"></div>
 
-    <div class="exp-item">
-      <span class="exp-period">2017 — 2021</span>
-      <span class="exp-role">Diploma in Computer Science</span>
-      <span class="exp-company">University / Polytechnic</span>
-      <p class="exp-desc">Studied core software development fundamentals including programming, databases, networking, and system design. Developed multiple academic projects covering web application development and IoT systems.</p>
-      <div class="exp-tags">
-        <span class="tag">Computer Science</span><span class="tag">Programming</span>
-        <span class="tag">Databases</span><span class="tag">Networking</span>
+    <div class="pf-exp">
+      <div class="pf-exp-hdr">
+        <div class="pf-exp-hdr-l">
+          <span class="pf-exp-role">Diploma in Computer Science</span>
+          <span class="pf-exp-co">University / Polytechnic</span>
+        </div>
+        <div class="pf-exp-hdr-r"><span class="pf-exp-period">2017 — 2021</span></div>
       </div>
+      <p class="pf-exp-desc">Studied core software development fundamentals including programming, databases, networking, and system design. Developed multiple academic projects covering web application development and IoT systems.</p>
+      <div class="pf-exp-tags">Computer Science &middot; Programming &middot; Databases &middot; Networking</div>
     </div>
   </div>
 
-  <!-- CONTACT FOOTER -->
-  <div class="contact-footer">
-    <span class="cf-label">Get In Touch</span>
-    <span class="cf-title">Let's build something together</span>
-    <span class="cf-sub">Open to new projects and collaborations.</span>
-    <div class="cf-grid">
-      <div class="cf-cell">
-        <span class="cf-item-lbl">Email</span>
-        <span class="cf-item-val">muhdadamafiq@gmail.com</span>
+  <!-- FOOTER -->
+  <div class="pf-footer">
+    <span class="pf-footer-title">Let's Build Something Together</span>
+    <span class="pf-footer-sub">Open to new projects and collaborations. Feel free to reach out.</span>
+    <div class="pf-footer-row">
+      <div class="pf-footer-col">
+        <span class="pf-footer-lbl">Email</span>
+        <span class="pf-footer-val">muhdadamafiq@gmail.com</span>
       </div>
-      <div class="cf-cell">
-        <span class="cf-item-lbl">GitHub</span>
-        <span class="cf-item-val">github.com/muhdadamafiq</span>
+      <div class="pf-footer-col">
+        <span class="pf-footer-lbl">GitHub</span>
+        <span class="pf-footer-val">github.com/muhdadamafiq</span>
       </div>
-      <div class="cf-cell">
-        <span class="cf-item-lbl">Location</span>
-        <span class="cf-item-val">Malaysia</span>
+      <div class="pf-footer-col">
+        <span class="pf-footer-lbl">Location</span>
+        <span class="pf-footer-val">Malaysia</span>
       </div>
     </div>
   </div>
