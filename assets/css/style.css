@@ -2183,7 +2183,8 @@ textarea.form-control {
   border-radius: var(--radius);
   cursor: pointer;
   overflow: hidden;
-  height: 90px;
+  width: 110px;
+  height: 110px;
   transition: border-color 0.2s, background 0.2s;
 }
 .pdf-modal-img-zone:hover {

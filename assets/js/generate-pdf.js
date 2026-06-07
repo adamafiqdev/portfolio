@@ -478,9 +478,9 @@ ${baseCSS()}
       <span class="pf-name">${name}</span>
       <span class="pf-role">${role}</span>
     </div>
-    <div class="pf-header-deco" style="${profileImage ? 'padding:0;overflow:hidden;' : ''}">
+    <div class="pf-header-deco" style="${profileImage ? 'padding:0;overflow:hidden;vertical-align:top;' : ''}">
       ${profileImage
-        ? `<img src="${profileImage}" alt="Profile" style="width:100%;height:100%;object-fit:cover;display:block;">`
+        ? `<img src="${profileImage}" alt="Profile" style="width:130px;height:130px;object-fit:cover;display:block;">`
         : `<span class="pf-deco-mono">${initials}</span><span class="pf-deco-lbl">Portfolio</span>`
       }
     </div>
@@ -859,18 +859,34 @@ ${baseCSS()}
       imgPreview.innerHTML = placeholderHTML;
       imgClear.hidden  = true;
 
-      // Image selection
+      // Image selection — crop to center square via canvas
       imgInput.addEventListener('change', function onImgChange() {
         const file = imgInput.files[0];
         if (!file) return;
+        imgInput.removeEventListener('change', onImgChange);
         const reader = new FileReader();
         reader.onload = e => {
-          profileImage = e.target.result;
-          imgPreview.innerHTML = `<img src="${profileImage}" alt="Profile photo" style="width:100%;height:100%;object-fit:cover;display:block;">`;
-          imgClear.hidden = false;
+          const raw = new Image();
+          raw.onload = () => {
+            const size = Math.min(raw.width, raw.height);
+            const canvas = document.createElement('canvas');
+            canvas.width  = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(
+              raw,
+              (raw.width  - size) / 2,
+              (raw.height - size) / 2,
+              size, size,
+              0, 0, size, size
+            );
+            profileImage = canvas.toDataURL('image/jpeg', 0.92);
+            imgPreview.innerHTML = `<img src="${profileImage}" alt="Profile photo" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+            imgClear.hidden = false;
+          };
+          raw.src = e.target.result;
         };
         reader.readAsDataURL(file);
-        imgInput.removeEventListener('change', onImgChange);
       });
 
       imgClear.onclick = () => {
