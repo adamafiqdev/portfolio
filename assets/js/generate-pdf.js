@@ -463,8 +463,8 @@ ${baseCSS()}
       <span class="pf-name">Muhammad Adam Afiq</span>
       <span class="pf-role">Software Developer</span>
       <div class="pf-contact-row">
-        <span class="pf-contact-cell">muhdadamafiq@gmail.com</span>
-        <span class="pf-contact-cell">github.com/muhdadamafiq</span>
+        <span class="pf-contact-cell">adamafiq.dev@gmail.com</span>
+        <span class="pf-contact-cell">github.com/adamafiq</span>
         <span class="pf-contact-cell">Malaysia</span>
       </div>
     </div>
@@ -551,7 +551,7 @@ ${baseCSS()}
         <span class="pf-proj-tech">Tech: ${(p.technologies || []).join(' &middot; ')}</span>
       </div>
     `).join('') : `
-      <p class="pf-bio">Visit <strong>github.com/muhdadamafiq</strong> to explore all projects.</p>
+      <p class="pf-bio">Visit <strong>github.com/adamafiq</strong> to explore all projects.</p>
     `}
   </div>
 
@@ -605,11 +605,11 @@ ${baseCSS()}
     <div class="pf-footer-row">
       <div class="pf-footer-col">
         <span class="pf-footer-lbl">Email</span>
-        <span class="pf-footer-val">muhdadamafiq@gmail.com</span>
+        <span class="pf-footer-val">adamafiq.dev@gmail.com</span>
       </div>
       <div class="pf-footer-col">
         <span class="pf-footer-lbl">GitHub</span>
-        <span class="pf-footer-val">github.com/muhdadamafiq</span>
+        <span class="pf-footer-val">github.com/adamafiq</span>
       </div>
       <div class="pf-footer-col">
         <span class="pf-footer-lbl">Location</span>
@@ -728,8 +728,8 @@ ${baseCSS()}
       <span class="cv-title">Software Developer</span>
     </div>
     <div class="cv-header-right">
-      <span class="cv-ci">muhdadamafiq@gmail.com</span>
-      <span class="cv-ci">github.com/muhdadamafiq</span>
+      <span class="cv-ci">adamafiq.dev@gmail.com</span>
+      <span class="cv-ci">github.com/adamafiq</span>
       <span class="cv-ci">Malaysia</span>
     </div>
   </div>
@@ -850,8 +850,8 @@ ${baseCSS()}
 
       <div class="cv-side-sec">
         <span class="cv-side-title">Contact</span>
-        <span class="cv-side-item">muhdadamafiq@gmail.com</span>
-        <span class="cv-side-item">github.com/muhdadamafiq</span>
+        <span class="cv-side-item">adamafiq.dev@gmail.com</span>
+        <span class="cv-side-item">github.com/adamafiq</span>
         <span class="cv-side-item">Malaysia</span>
       </div>
 
