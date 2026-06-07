@@ -670,8 +670,16 @@ ul { list-style: none; }
    ABOUT SECTION
 ============================================================ */
 .about-grid {
-  display: block;
-  max-width: 780px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-image-wrap {
@@ -2078,7 +2086,8 @@ textarea.form-control {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .tech-grid { grid-template-columns: repeat(5, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-grid { max-width: 100%; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-stats { justify-content: flex-start; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
   .contact-inner { grid-template-columns: 1fr; gap: 48px; }
