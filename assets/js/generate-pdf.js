@@ -2,16 +2,6 @@
 // PDF Generator — Adam Afiq Portfolio
 // Client-side, GitHub Pages compatible (no backend needed).
 // Requires html2pdf.js loaded via CDN before this script.
-//
-// Fixes applied vs naive approach:
-//  1. Container is placed in normal document flow (covered by
-//     loading overlay) — html2canvas cannot render elements at
-//     top:-9999px reliably.
-//  2. CSS resets are scoped to .pdf-root so they don't bleed
-//     into the page's own styles and corrupt rendering.
-//  3. Main structural layouts use display:table / table-cell
-//     instead of flex/grid — html2canvas support is much more
-//     reliable for table rendering.
 // ============================================================
 
 (function () {
@@ -103,9 +93,6 @@
   }
 
   // ── Shared PDF CSS ───────────────────────────────────────
-  // IMPORTANT: All resets are scoped to .pdf-root so they do
-  // NOT override the portfolio page's own styles while the
-  // container is temporarily in the DOM.
   function baseCSS() {
     return `
       .pdf-root, .pdf-root * {
@@ -143,7 +130,20 @@
   }
 
   // ── Portfolio HTML ───────────────────────────────────────
-  function portfolioHTML(projects) {
+  function portfolioHTML(projects, sd) {
+    const about    = sd.about    || {};
+    const contact  = sd.contact  || {};
+    const name     = about.name     || '';
+    const role     = about.role     || '';
+    const email    = contact.email    || '';
+    const github   = contact.github   || '';
+    const location = contact.location || '';
+    const bio      = about.bio   || [];
+    const stats    = about.stats || [];
+    const techStack  = sd.techStack  || [];
+    const experience = sd.experience || [];
+    const initials   = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase() || 'AA';
+
     const featured = projects.filter(p => p.featured);
     const others   = projects.filter(p => !p.featured);
     const display  = [...featured, ...others];
@@ -159,33 +159,33 @@ ${baseCSS()}
 }
 .pdf-root .pf-header-main {
   display: table-cell;
-  padding: 34px 44px 26px;
+  padding: 30px 40px 24px;
   vertical-align: middle;
   border-bottom: 3px solid #2563eb;
 }
 .pdf-root .pf-header-deco {
   display: table-cell;
-  width: 148px;
+  width: 130px;
   background: linear-gradient(150deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
   text-align: center;
   vertical-align: middle;
   border-bottom: 3px solid #2563eb;
 }
 .pdf-root .pf-name {
-  font-size: 23pt;
+  font-size: 22pt;
   font-weight: 800;
   letter-spacing: -0.5px;
   color: #0f172a;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   line-height: 1.1;
 }
 .pdf-root .pf-role {
-  font-size: 12pt;
+  font-size: 11pt;
   font-weight: 600;
   color: #2563eb;
   display: block;
-  margin-bottom: 13px;
+  margin-bottom: 11px;
 }
 .pdf-root .pf-contact-row {
   display: table;
@@ -194,12 +194,12 @@ ${baseCSS()}
 }
 .pdf-root .pf-contact-cell {
   display: table-cell;
-  font-size: 8.5pt;
+  font-size: 8pt;
   color: #4b5563;
   vertical-align: top;
 }
 .pdf-root .pf-deco-mono {
-  font-size: 28pt;
+  font-size: 24pt;
   font-weight: 900;
   color: rgba(255,255,255,0.9);
   letter-spacing: -2px;
@@ -208,7 +208,7 @@ ${baseCSS()}
   margin-bottom: 5px;
 }
 .pdf-root .pf-deco-lbl {
-  font-size: 7pt;
+  font-size: 6.5pt;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -216,30 +216,56 @@ ${baseCSS()}
   display: block;
 }
 
-/* ---- PAGE ---- */
-.pdf-root .pf-page { width: 210mm; padding: 30px 44px 22px; }
-.pdf-root .pf-page.page-break { page-break-before: always; }
+/* ---- PROFILE BODY: sidebar (skills) + main (bio + stats) ---- */
+.pdf-root .pf-body {
+  display: table;
+  width: 210mm;
+  table-layout: fixed;
+}
+.pdf-root .pf-sidebar {
+  display: table-cell;
+  width: 36%;
+  padding: 26px 18px 28px 40px;
+  border-right: 2px solid #bfdbfe;
+  background: #f8fafc;
+  vertical-align: top;
+}
+.pdf-root .pf-main {
+  display: table-cell;
+  width: 64%;
+  padding: 26px 40px 28px 22px;
+  vertical-align: top;
+}
 
 /* ---- SECTION HEADING ---- */
 .pdf-root .pf-sec {
-  font-size: 9pt;
+  font-size: 8.5pt;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: #2563eb;
   display: block;
-  padding-bottom: 7px;
+  padding-bottom: 6px;
   border-bottom: 2px solid #bfdbfe;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
-.pdf-root .pf-sec-gap { margin-top: 20px; }
 
 /* ---- BIO ---- */
 .pdf-root .pf-bio {
-  font-size: 10.5pt;
+  font-size: 9.5pt;
   color: #374151;
   line-height: 1.8;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
+}
+
+/* ---- SKILL ITEMS (sidebar list) ---- */
+.pdf-root .pf-sk-item {
+  font-size: 9pt;
+  color: #334155;
+  display: block;
+  margin-bottom: 6px;
+  padding-left: 8px;
+  border-left: 3px solid #bfdbfe;
 }
 
 /* ---- STATS ---- */
@@ -248,17 +274,17 @@ ${baseCSS()}
   width: 100%;
   table-layout: fixed;
   border-collapse: separate;
-  border-spacing: 10px 0;
-  margin: 18px 0 24px;
+  border-spacing: 7px 0;
+  margin-top: 16px;
 }
 .pdf-root .pf-stat-cell {
   display: table-cell;
   border-top: 3px solid #2563eb;
-  padding: 10px 6px 8px;
+  padding: 9px 4px 7px;
   text-align: center;
 }
 .pdf-root .pf-stat-n {
-  font-size: 18pt;
+  font-size: 15pt;
   font-weight: 800;
   color: #1e40af;
   line-height: 1;
@@ -266,92 +292,81 @@ ${baseCSS()}
   margin-bottom: 4px;
 }
 .pdf-root .pf-stat-l {
-  font-size: 7.5pt;
+  font-size: 7pt;
   color: #6b7280;
   font-weight: 600;
   line-height: 1.3;
   display: block;
 }
 
-/* ---- SKILLS ---- */
-.pdf-root .pf-sk-row {
+/* ---- PAGE ---- */
+.pdf-root .pf-page { width: 210mm; padding: 28px 40px 28px; }
+.pdf-root .pf-page.page-break { page-break-before: always; padding-top: 36px; }
+
+/* ---- PROJECT CARDS (alternating image/details) ---- */
+.pdf-root .pf-proj-row {
   display: table;
   width: 100%;
   table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 11px 11px;
-  margin-top: -11px;
-}
-.pdf-root .pf-sk-cell {
-  display: table-cell;
-  vertical-align: top;
-  border-left: 3px solid #2563eb;
-  padding: 12px 14px;
-  background: #f8fafc;
-}
-.pdf-root .pf-sk-cat {
-  font-size: 8pt;
-  font-weight: 700;
-  color: #1e40af;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: block;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #dbeafe;
-  margin-bottom: 8px;
-}
-.pdf-root .pf-sk-item {
-  font-size: 9pt;
-  color: #334155;
-  display: block;
-  margin-bottom: 4px;
-}
-
-/* ---- PROJECTS ---- */
-.pdf-root .pf-proj {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   page-break-inside: avoid;
-  padding: 13px 15px;
+}
+.pdf-root .pf-proj-row-cell {
+  display: table-cell;
+  width: 50%;
+  vertical-align: top;
+}
+.pdf-root .pf-proj-details {
   border: 1px solid #e2e8f0;
   border-left: 4px solid #2563eb;
   background: #fafafa;
+  padding: 13px 14px;
+  height: 150px;
 }
-.pdf-root .pf-proj-meta {
-  display: table;
+.pdf-root .pf-proj-details-full {
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #2563eb;
+  background: #fafafa;
+  padding: 13px 16px;
+  margin-bottom: 16px;
+  page-break-inside: avoid;
+}
+.pdf-root .pf-proj-img-wrap {
+  border: 1px solid #e2e8f0;
+  height: 150px;
+  overflow: hidden;
+  background: #eff6ff;
+}
+.pdf-root .pf-proj-img-wrap img {
   width: 100%;
-  table-layout: fixed;
-  margin-bottom: 5px;
-}
-.pdf-root .pf-proj-meta-l { display: table-cell; vertical-align: middle; }
-.pdf-root .pf-proj-meta-r {
-  display: table-cell;
-  width: 90px;
-  text-align: right;
-  vertical-align: middle;
+  height: 150px;
+  object-fit: cover;
+  display: block;
 }
 .pdf-root .pf-proj-cat {
-  font-size: 7.5pt;
+  font-size: 7pt;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #2563eb;
   display: block;
+  margin-bottom: 3px;
 }
 .pdf-root .pf-proj-name {
-  font-size: 11.5pt;
+  font-size: 10pt;
   font-weight: 700;
   color: #0f172a;
   display: block;
-  margin-top: 2px;
+  margin-bottom: 5px;
 }
 .pdf-root .pf-proj-desc {
-  font-size: 9.5pt;
+  font-size: 8pt;
   color: #4b5563;
-  line-height: 1.75;
-  margin-bottom: 7px;
+  line-height: 1.65;
+  margin-bottom: 6px;
 }
 .pdf-root .pf-proj-tech {
-  font-size: 8pt;
+  font-size: 7.5pt;
   color: #1e40af;
   font-weight: 600;
 }
@@ -376,7 +391,7 @@ ${baseCSS()}
   vertical-align: top;
 }
 .pdf-root .pf-exp-role {
-  font-size: 11.5pt;
+  font-size: 11pt;
   font-weight: 700;
   color: #0f172a;
   display: block;
@@ -415,21 +430,21 @@ ${baseCSS()}
 
 /* ---- FOOTER ---- */
 .pdf-root .pf-footer {
-  padding: 22px 44px 30px;
+  padding: 20px 40px 28px;
   background: #eff6ff;
   border-top: 2px solid #bfdbfe;
 }
 .pdf-root .pf-footer-title {
-  font-size: 13pt;
+  font-size: 12pt;
   font-weight: 800;
   color: #1e40af;
   display: block;
   margin-bottom: 4px;
 }
 .pdf-root .pf-footer-sub {
-  font-size: 9.5pt;
+  font-size: 9pt;
   color: #4b5563;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: block;
 }
 .pdf-root .pf-footer-row {
@@ -460,142 +475,104 @@ ${baseCSS()}
   <!-- HEADER -->
   <div class="pf-header">
     <div class="pf-header-main">
-      <span class="pf-name">Muhammad Adam Afiq</span>
-      <span class="pf-role">Software Developer</span>
+      <span class="pf-name">${name}</span>
+      <span class="pf-role">${role}</span>
       <div class="pf-contact-row">
-        <span class="pf-contact-cell">adamafiq.dev@gmail.com</span>
-        <span class="pf-contact-cell">github.com/adamafiq</span>
-        <span class="pf-contact-cell">Malaysia</span>
+        ${email    ? `<span class="pf-contact-cell">${email}</span>`    : ''}
+        ${github   ? `<span class="pf-contact-cell">${github}</span>`   : ''}
+        ${location ? `<span class="pf-contact-cell">${location}</span>` : ''}
       </div>
     </div>
     <div class="pf-header-deco">
-      <span class="pf-deco-mono">AA</span>
+      <span class="pf-deco-mono">${initials}</span>
       <span class="pf-deco-lbl">Portfolio</span>
     </div>
   </div>
 
-  <!-- PROFILE + SKILLS -->
-  <div class="pf-page">
-    <span class="pf-sec">Profile</span>
-    <p class="pf-bio">I'm <strong>Adam Afiq</strong>, a Software Developer focused on building practical systems that solve real business problems. I specialise in <strong>dashboards and monitoring applications</strong> that give teams instant visibility into their data, <strong>internal tools</strong> that automate workflows, and <strong>web applications</strong> built for reliability and usability.</p>
-    <p class="pf-bio">My approach is straightforward: understand the problem deeply, build a clean solution, and deliver something that actually gets used. I care about performance, maintainability, and making complex systems feel simple.</p>
+  <!-- PROFILE BODY: LEFT = Technical Skills, RIGHT = Bio + Stats -->
+  <div class="pf-body">
 
-    <div class="pf-stats">
-      <div class="pf-stat-cell">
-        <span class="pf-stat-n">15+</span>
-        <span class="pf-stat-l">Projects Completed</span>
-      </div>
-      <div class="pf-stat-cell">
-        <span class="pf-stat-n">3+</span>
-        <span class="pf-stat-l">Years Experience</span>
-      </div>
-      <div class="pf-stat-cell">
-        <span class="pf-stat-n">10+</span>
-        <span class="pf-stat-l">Satisfied Clients</span>
-      </div>
-      <div class="pf-stat-cell">
-        <span class="pf-stat-n">50+</span>
-        <span class="pf-stat-l">Devices Monitored</span>
+    <div class="pf-sidebar">
+      <span class="pf-sec">Technical Skills</span>
+      ${techStack.map(t => `<span class="pf-sk-item">${t.name}</span>`).join('')}
+    </div>
+
+    <div class="pf-main">
+      <span class="pf-sec">Profile</span>
+      ${bio.map(p => `<p class="pf-bio">${p}</p>`).join('')}
+      <div class="pf-stats">
+        ${stats.map(s => `
+          <div class="pf-stat-cell">
+            <span class="pf-stat-n">${s.target}${s.suffix || ''}</span>
+            <span class="pf-stat-l">${s.label}</span>
+          </div>`).join('')}
       </div>
     </div>
 
-    <span class="pf-sec pf-sec-gap">Technical Skills</span>
-    <div class="pf-sk-row">
-      <div class="pf-sk-cell">
-        <span class="pf-sk-cat">Languages</span>
-        <span class="pf-sk-item">PHP</span>
-        <span class="pf-sk-item">JavaScript</span>
-        <span class="pf-sk-item">Python</span>
-        <span class="pf-sk-item">HTML5 / CSS3</span>
-        <span class="pf-sk-item">SQL</span>
-      </div>
-      <div class="pf-sk-cell">
-        <span class="pf-sk-cat">Frameworks</span>
-        <span class="pf-sk-item">Laravel</span>
-        <span class="pf-sk-item">ReactJS</span>
-        <span class="pf-sk-item">Bootstrap</span>
-        <span class="pf-sk-item">Chart.js</span>
-      </div>
-    </div>
-    <div class="pf-sk-row">
-      <div class="pf-sk-cell">
-        <span class="pf-sk-cat">Databases &amp; DevOps</span>
-        <span class="pf-sk-item">MySQL</span>
-        <span class="pf-sk-item">SQLite</span>
-        <span class="pf-sk-item">Docker</span>
-        <span class="pf-sk-item">Git / GitHub</span>
-      </div>
-      <div class="pf-sk-cell">
-        <span class="pf-sk-cat">Specialisations</span>
-        <span class="pf-sk-item">Dashboards &amp; Monitoring</span>
-        <span class="pf-sk-item">IoT / Raspberry Pi</span>
-        <span class="pf-sk-item">Jetson (NVIDIA)</span>
-        <span class="pf-sk-item">SNMP / MQTT / WebSocket</span>
-      </div>
-    </div>
   </div>
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS: alternating image/details cards -->
   <div class="pf-page page-break">
     <span class="pf-sec">Featured Projects</span>
 
-    ${display.length ? display.map(p => `
-      <div class="pf-proj">
-        <div class="pf-proj-meta">
-          <div class="pf-proj-meta-l">
-            <span class="pf-proj-cat">${p.category || 'Project'}</span>
+    ${(() => {
+      if (!display.length) return `<p class="pf-bio">Visit <strong>${github || 'GitHub'}</strong> to explore all projects.</p>`;
+      let imgIdx = 0;
+      return display.map(p => {
+        const hasImage = !!p.coverImage;
+        const descShort = (p.description || '').length > 130 ? (p.description || '').slice(0, 130) + '…' : (p.description || '');
+        const descFull  = (p.description || '').length > 220 ? (p.description || '').slice(0, 220) + '…' : (p.description || '');
+        const techList  = (p.technologies || []).slice(0, 6).join(' &middot; ');
+
+        if (!hasImage) {
+          return `
+            <div class="pf-proj-details-full">
+              <span class="pf-proj-cat">${p.category || ''}</span>
+              <span class="pf-proj-name">${p.title || ''}</span>
+              <p class="pf-proj-desc" style="margin-bottom:7px">${descFull}</p>
+              <span class="pf-proj-tech">${techList}</span>
+            </div>`;
+        }
+
+        const isEven = imgIdx % 2 === 0;
+        imgIdx++;
+
+        const detailsCell = `
+          <div class="pf-proj-details">
+            <span class="pf-proj-cat">${p.category || ''}</span>
             <span class="pf-proj-name">${p.title || ''}</span>
-          </div>
-        </div>
-        <p class="pf-proj-desc">${p.longDescription || p.description || ''}</p>
-        <span class="pf-proj-tech">Tech: ${(p.technologies || []).join(' &middot; ')}</span>
-      </div>
-    `).join('') : `
-      <p class="pf-bio">Visit <strong>github.com/adamafiq</strong> to explore all projects.</p>
-    `}
+            <p class="pf-proj-desc">${descShort}</p>
+            <span class="pf-proj-tech">${techList}</span>
+          </div>`;
+        const imageCell = `<div class="pf-proj-img-wrap"><img src="${p.coverImage}" alt=""></div>`;
+
+        return `
+          <div class="pf-proj-row">
+            <div class="pf-proj-row-cell" style="padding-right:7px">${isEven ? detailsCell : imageCell}</div>
+            <div class="pf-proj-row-cell" style="padding-left:7px">${isEven ? imageCell : detailsCell}</div>
+          </div>`;
+      }).join('');
+    })()}
   </div>
 
   <!-- EXPERIENCE -->
   <div class="pf-page page-break">
     <span class="pf-sec">Experience &amp; Background</span>
 
-    <div class="pf-exp">
-      <div class="pf-exp-hdr">
-        <div class="pf-exp-hdr-l">
-          <span class="pf-exp-role">Software Developer</span>
-          <span class="pf-exp-co">Freelance / Independent</span>
+    ${experience.map((exp, i) => `
+      <div class="pf-exp">
+        <div class="pf-exp-hdr">
+          <div class="pf-exp-hdr-l">
+            <span class="pf-exp-role">${exp.role || ''}</span>
+            <span class="pf-exp-co">${exp.company || ''}</span>
+          </div>
+          <div class="pf-exp-hdr-r"><span class="pf-exp-period">${exp.period || ''}</span></div>
         </div>
-        <div class="pf-exp-hdr-r"><span class="pf-exp-period">2023 — Present</span></div>
+        <p class="pf-exp-desc">${exp.desc || ''}</p>
+        ${exp.tags && exp.tags.length ? `<div class="pf-exp-tags">${exp.tags.join(' &middot; ')}</div>` : ''}
       </div>
-      <p class="pf-exp-desc">Developing custom monitoring dashboards, internal business tools, and web applications for clients across various industries. Delivering end-to-end solutions from requirements gathering through deployment and ongoing support.</p>
-      <div class="pf-exp-tags">Dashboard Development &middot; Monitoring Systems &middot; IoT Integration &middot; Internal Tools</div>
-    </div>
-    <div class="pf-divider"></div>
-
-    <div class="pf-exp">
-      <div class="pf-exp-hdr">
-        <div class="pf-exp-hdr-l">
-          <span class="pf-exp-role">Junior Software Developer</span>
-          <span class="pf-exp-co">Previous Company</span>
-        </div>
-        <div class="pf-exp-hdr-r"><span class="pf-exp-period">2021 — 2023</span></div>
-      </div>
-      <p class="pf-exp-desc">Built and maintained web-based business applications using PHP and MySQL. Worked closely with operations teams to translate requirements into functional software. Developed reporting modules and data management tools.</p>
-      <div class="pf-exp-tags">PHP &middot; MySQL &middot; Web Applications &middot; Reporting</div>
-    </div>
-    <div class="pf-divider"></div>
-
-    <div class="pf-exp">
-      <div class="pf-exp-hdr">
-        <div class="pf-exp-hdr-l">
-          <span class="pf-exp-role">Diploma in Computer Science</span>
-          <span class="pf-exp-co">University / Polytechnic</span>
-        </div>
-        <div class="pf-exp-hdr-r"><span class="pf-exp-period">2017 — 2021</span></div>
-      </div>
-      <p class="pf-exp-desc">Studied core software development fundamentals including programming, databases, networking, and system design. Developed multiple academic projects covering web application development and IoT systems.</p>
-      <div class="pf-exp-tags">Computer Science &middot; Programming &middot; Databases &middot; Networking</div>
-    </div>
+      ${i < experience.length - 1 ? '<div class="pf-divider"></div>' : ''}
+    `).join('')}
   </div>
 
   <!-- FOOTER -->
@@ -603,18 +580,9 @@ ${baseCSS()}
     <span class="pf-footer-title">Let's Build Something Together</span>
     <span class="pf-footer-sub">Open to new projects and collaborations. Feel free to reach out.</span>
     <div class="pf-footer-row">
-      <div class="pf-footer-col">
-        <span class="pf-footer-lbl">Email</span>
-        <span class="pf-footer-val">adamafiq.dev@gmail.com</span>
-      </div>
-      <div class="pf-footer-col">
-        <span class="pf-footer-lbl">GitHub</span>
-        <span class="pf-footer-val">github.com/adamafiq</span>
-      </div>
-      <div class="pf-footer-col">
-        <span class="pf-footer-lbl">Location</span>
-        <span class="pf-footer-val">Malaysia</span>
-      </div>
+      ${email    ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Email</span><span class="pf-footer-val">${email}</span></div>`       : ''}
+      ${github   ? `<div class="pf-footer-col"><span class="pf-footer-lbl">GitHub</span><span class="pf-footer-val">${github}</span></div>`      : ''}
+      ${location ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Location</span><span class="pf-footer-val">${location}</span></div>` : ''}
     </div>
   </div>
 
@@ -622,14 +590,36 @@ ${baseCSS()}
   }
 
   // ── CV HTML ──────────────────────────────────────────────
-  function cvHTML() {
+  function cvHTML(sd) {
+    const about    = sd.about    || {};
+    const contact  = sd.contact  || {};
+    const name     = about.name     || '';
+    const role     = about.role     || '';
+    const email    = contact.email    || '';
+    const github   = contact.github   || '';
+    const location = contact.location || '';
+    const bio      = about.bio   || [];
+    const stats    = about.stats || [];
+    const techStack  = sd.techStack  || [];
+    const experience = sd.experience || [];
+    const services   = sd.services   || [];
+
+    // Strip HTML tags for plain-text summary paragraph
+    const summary = bio.map(p => p.replace(/<[^>]+>/g, '')).join(' ');
+
+    // Separate work experience from education entries
+    const eduKeywords = /diploma|bachelor|master|phd|degree/i;
+    const uniKeywords = /university|polytechnic|college|school|institute/i;
+    const workExp = experience.filter(e => !eduKeywords.test(e.role || '') && !uniKeywords.test(e.company || ''));
+    const eduExp  = experience.filter(e =>  eduKeywords.test(e.role || '') ||  uniKeywords.test(e.company || ''));
+
     return `<style>
 ${baseCSS()}
 
 /* ---- HEADER ---- */
 .pdf-root .cv-header {
   display: table; width: 100%; table-layout: fixed;
-  padding: 40px 48px 28px;
+  padding: 36px 48px 28px;
   border-bottom: 3px solid #4f46e5;
 }
 .pdf-root .cv-header-left { display: table-cell; vertical-align: top; }
@@ -644,19 +634,19 @@ ${baseCSS()}
 .pdf-root .cv-title { font-size: 12pt; color: #4f46e5; font-weight: 600; display: block; }
 .pdf-root .cv-ci { font-size: 9.5pt; color: #4b5563; margin-bottom: 4px; display: block; }
 
-/* ---- TWO-COLUMN BODY (table layout) ---- */
+/* ---- TWO-COLUMN BODY ---- */
 .pdf-root .cv-body {
   display: table; width: 100%; table-layout: fixed;
 }
 .pdf-root .cv-main {
   display: table-cell; width: 62%;
-  padding: 32px 28px 40px 48px;
+  padding: 32px 28px 36px 48px;
   border-right: 1px solid #e5e7eb;
   vertical-align: top;
 }
 .pdf-root .cv-side {
   display: table-cell; width: 38%;
-  padding: 32px 24px 40px 24px;
+  padding: 32px 24px 36px 24px;
   background: #f9fafb;
   vertical-align: top;
 }
@@ -696,10 +686,6 @@ ${baseCSS()}
 /* ---- SKILLS ---- */
 .pdf-root .cv-skill-grp { margin-bottom: 14px; }
 .pdf-root .cv-skill-grp:last-child { margin-bottom: 0; }
-.pdf-root .cv-skill-grp-title {
-  font-size: 9pt; font-weight: 700; color: #374151;
-  margin-bottom: 7px; display: block;
-}
 
 /* ---- SIDEBAR ---- */
 .pdf-root .cv-side-sec { margin-bottom: 20px; }
@@ -724,13 +710,13 @@ ${baseCSS()}
   <!-- HEADER -->
   <div class="cv-header">
     <div class="cv-header-left">
-      <span class="cv-name">Muhammad Adam Afiq</span>
-      <span class="cv-title">Software Developer</span>
+      <span class="cv-name">${name}</span>
+      <span class="cv-title">${role}</span>
     </div>
     <div class="cv-header-right">
-      <span class="cv-ci">adamafiq.dev@gmail.com</span>
-      <span class="cv-ci">github.com/adamafiq</span>
-      <span class="cv-ci">Malaysia</span>
+      ${email    ? `<span class="cv-ci">${email}</span>`    : ''}
+      ${github   ? `<span class="cv-ci">${github}</span>`   : ''}
+      ${location ? `<span class="cv-ci">${location}</span>` : ''}
     </div>
   </div>
 
@@ -742,67 +728,26 @@ ${baseCSS()}
 
       <div class="cv-sec">
         <span class="cv-sec-title">Professional Summary</span>
-        <p class="cv-summary">
-          Software Developer with 3+ years of experience building dashboards, monitoring systems,
-          internal tools, and web applications. Focused on delivering practical, reliable software
-          that solves real business problems. Strong track record of end-to-end project delivery
-          from requirements gathering through deployment and ongoing support.
-        </p>
+        <p class="cv-summary">${summary}</p>
       </div>
 
       <div class="cv-sec">
         <span class="cv-sec-title">Work Experience</span>
-
-        <div class="cv-exp">
-          <span class="cv-exp-period">2023 — Present</span>
-          <span class="cv-exp-role">Software Developer</span>
-          <span class="cv-exp-company">Freelance / Independent</span>
-          <p class="cv-exp-desc">Developing custom monitoring dashboards, internal business tools, and web applications for clients across various industries. Delivering end-to-end solutions from requirements gathering through deployment.</p>
-          <div class="cv-exp-tags">
-            <span class="tag">Dashboards</span><span class="tag">Monitoring</span>
-            <span class="tag">IoT</span><span class="tag">Internal Tools</span>
+        ${workExp.map(exp => `
+          <div class="cv-exp">
+            <span class="cv-exp-period">${exp.period || ''}</span>
+            <span class="cv-exp-role">${exp.role || ''}</span>
+            <span class="cv-exp-company">${exp.company || ''}</span>
+            <p class="cv-exp-desc">${exp.desc || ''}</p>
+            ${exp.tags && exp.tags.length ? `<div class="cv-exp-tags">${exp.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
           </div>
-        </div>
-
-        <div class="cv-exp">
-          <span class="cv-exp-period">2021 — 2023</span>
-          <span class="cv-exp-role">Junior Software Developer</span>
-          <span class="cv-exp-company">Previous Company</span>
-          <p class="cv-exp-desc">Built and maintained web-based business applications using PHP and MySQL. Translated business requirements into functional software. Developed reporting modules and data management tools.</p>
-          <div class="cv-exp-tags">
-            <span class="tag">PHP</span><span class="tag">MySQL</span>
-            <span class="tag">Web Apps</span><span class="tag">Reporting</span>
-          </div>
-        </div>
+        `).join('')}
       </div>
 
       <div class="cv-sec">
         <span class="cv-sec-title">Technical Skills</span>
-
         <div class="cv-skill-grp">
-          <span class="cv-skill-grp-title">Languages</span>
-          <span class="tag">PHP</span><span class="tag">JavaScript</span>
-          <span class="tag">Python</span><span class="tag">HTML5</span>
-          <span class="tag">CSS3</span><span class="tag">SQL</span>
-        </div>
-
-        <div class="cv-skill-grp">
-          <span class="cv-skill-grp-title">Frameworks &amp; Libraries</span>
-          <span class="tag">Laravel</span><span class="tag">ReactJS</span>
-          <span class="tag">Bootstrap</span><span class="tag">Chart.js</span>
-        </div>
-
-        <div class="cv-skill-grp">
-          <span class="cv-skill-grp-title">Databases &amp; DevOps</span>
-          <span class="tag">MySQL</span><span class="tag">SQLite</span>
-          <span class="tag">Docker</span><span class="tag">Git</span><span class="tag">GitHub</span>
-        </div>
-
-        <div class="cv-skill-grp">
-          <span class="cv-skill-grp-title">Specialisations</span>
-          <span class="tag">Dashboard Dev</span><span class="tag">IoT / Raspberry Pi</span>
-          <span class="tag">Jetson Nano</span><span class="tag">SNMP</span>
-          <span class="tag">MQTT</span><span class="tag">WebSocket</span>
+          ${techStack.map(t => `<span class="tag">${t.name}</span>`).join('')}
         </div>
       </div>
 
@@ -811,30 +756,30 @@ ${baseCSS()}
     <!-- SIDEBAR COLUMN -->
     <div class="cv-side">
 
-      <div class="cv-side-sec">
-        <span class="cv-side-title">Education</span>
-        <span class="cv-side-item" style="font-weight:700;color:#09090b;">Diploma in Computer Science</span>
-        <span class="cv-side-item">University / Polytechnic</span>
-        <span class="cv-side-item" style="color:#4f46e5;font-weight:600;">2017 — 2021</span>
-      </div>
+      ${eduExp.length ? `
+        <div class="cv-side-sec">
+          <span class="cv-side-title">Education</span>
+          ${eduExp.map(e => `
+            <span class="cv-side-item" style="font-weight:700;color:#09090b;">${e.role || ''}</span>
+            <span class="cv-side-item">${e.company || ''}</span>
+            ${e.period ? `<span class="cv-side-item" style="color:#4f46e5;font-weight:600;">${e.period}</span>` : ''}
+          `).join('')}
+        </div>
+      ` : ''}
 
-      <div class="cv-side-sec">
-        <span class="cv-side-title">Services Offered</span>
-        <span class="cv-side-item">Dashboard Development</span>
-        <span class="cv-side-item">Monitoring Systems</span>
-        <span class="cv-side-item">Internal Tools</span>
-        <span class="cv-side-item">Reporting Systems</span>
-        <span class="cv-side-item">Web Applications</span>
-        <span class="cv-side-item">Automation Solutions</span>
-      </div>
+      ${services.length ? `
+        <div class="cv-side-sec">
+          <span class="cv-side-title">Services Offered</span>
+          ${services.map(s => `<span class="cv-side-item">${s.title}</span>`).join('')}
+        </div>
+      ` : ''}
 
-      <div class="cv-side-sec">
-        <span class="cv-side-title">Key Highlights</span>
-        <span class="cv-side-item">15+ projects delivered end-to-end</span>
-        <span class="cv-side-item">10+ satisfied clients</span>
-        <span class="cv-side-item">50+ IoT devices monitored</span>
-        <span class="cv-side-item">99.9% avg system uptime</span>
-      </div>
+      ${stats.length ? `
+        <div class="cv-side-sec">
+          <span class="cv-side-title">Key Highlights</span>
+          ${stats.map(s => `<span class="cv-side-item">${s.target}${s.suffix || ''} ${s.label}</span>`).join('')}
+        </div>
+      ` : ''}
 
       <div class="cv-side-sec">
         <span class="cv-side-title">Languages</span>
@@ -850,9 +795,9 @@ ${baseCSS()}
 
       <div class="cv-side-sec">
         <span class="cv-side-title">Contact</span>
-        <span class="cv-side-item">adamafiq.dev@gmail.com</span>
-        <span class="cv-side-item">github.com/adamafiq</span>
-        <span class="cv-side-item">Malaysia</span>
+        ${email    ? `<span class="cv-side-item">${email}</span>`    : ''}
+        ${github   ? `<span class="cv-side-item">${github}</span>`   : ''}
+        ${location ? `<span class="cv-side-item">${location}</span>` : ''}
       </div>
 
     </div>
@@ -874,10 +819,28 @@ ${baseCSS()}
 
     const overlay = showOverlay();
 
-    // Load projects only for portfolio.
-    // Mirror the same version-aware logic used in projects.js:
-    // if localStorage version >= JSON version, use localStorage (may have
-    // manage.html edits); otherwise re-seed from the deployed JSON.
+    // ── Load site.json with version-aware localStorage logic ──
+    let siteData = {};
+    try {
+      let jsonSiteData = null;
+      try {
+        const r = await fetch('data/site.json');
+        if (r.ok) jsonSiteData = await r.json();
+      } catch (_) {}
+
+      const jsonVersion   = jsonSiteData ? (jsonSiteData._v || 1) : 0;
+      const storedVersion = parseInt(localStorage.getItem('portfolio_site_v') || '0', 10);
+      const stored        = localStorage.getItem('portfolio_site');
+
+      if (stored && storedVersion >= jsonVersion) {
+        try { siteData = JSON.parse(stored); } catch (_) {}
+      }
+      if (!Object.keys(siteData).length && jsonSiteData) {
+        siteData = jsonSiteData;
+      }
+    } catch (_) {}
+
+    // ── Load projects.json (portfolio only) ──────────────────
     let projects = [];
     if (isPF) {
       let jsonData = null;
@@ -886,9 +849,9 @@ ${baseCSS()}
         if (r.ok) jsonData = await r.json();
       } catch (_) {}
 
-      const jsonVersion = jsonData ? (jsonData._v || 1) : 0;
+      const jsonVersion   = jsonData ? (jsonData._v || 1) : 0;
       const storedVersion = parseInt(localStorage.getItem('portfolio_projects_v') || '0', 10);
-      const stored = localStorage.getItem('portfolio_projects');
+      const stored        = localStorage.getItem('portfolio_projects');
 
       if (stored && storedVersion >= jsonVersion) {
         try {
@@ -901,21 +864,19 @@ ${baseCSS()}
       }
     }
 
-    // Append container to body in normal document flow.
-    // The loading overlay (position:fixed) covers it visually
-    // while html2canvas can still render it from the DOM.
+    // Append container in normal document flow so html2canvas can render it.
+    // The loading overlay (position:fixed) covers it visually.
     const container = document.createElement('div');
     container.style.cssText = 'width:794px;background:#fff;margin:0;padding:0;';
-    container.innerHTML = isPF ? portfolioHTML(projects) : cvHTML();
+    container.innerHTML = isPF ? portfolioHTML(projects, siteData) : cvHTML(siteData);
     document.body.appendChild(container);
 
-    // Give the browser TWO paint cycles to lay out & render the
-    // injected HTML before html2canvas captures it.
+    // Give the browser TWO paint cycles to lay out & render before capture.
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
     await new Promise(r => setTimeout(r, 250));
 
     const opts = {
-      margin: 0,
+      margin: [15, 0, 15, 0], // 15mm top/bottom spacing on every A4 page
       filename: isPF ? 'Adam_Afiq_Portfolio.pdf' : 'Adam_Afiq_CV.pdf',
       image: { type: 'jpeg', quality: 0.97 },
       html2canvas: {
@@ -924,8 +885,6 @@ ${baseCSS()}
         letterRendering: true,
         backgroundColor: '#ffffff',
         logging: false,
-        // scrollX/scrollY = 0 so html2canvas doesn't shift the
-        // capture based on the user's current page scroll.
         scrollX: 0,
         scrollY: 0,
       },
