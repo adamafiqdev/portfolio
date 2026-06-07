@@ -169,7 +169,7 @@
   }
 
   // Step 2: async fetch to check version and re-seed if needed.
-  fetch(SITE_URL)
+  fetch(SITE_URL, { cache: 'no-cache' })
     .then(r => r.ok ? r.json() : null)
     .then(jsonData => {
       if (!jsonData) return;

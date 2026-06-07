@@ -892,7 +892,7 @@ ${baseCSS()}
     try {
       let jsonSiteData = null;
       try {
-        const r = await fetch('data/site.json');
+        const r = await fetch('data/site.json', { cache: 'no-cache' });
         if (r.ok) jsonSiteData = await r.json();
       } catch (_) {}
 
@@ -913,7 +913,7 @@ ${baseCSS()}
     if (isPF) {
       let jsonData = null;
       try {
-        const r = await fetch('data/projects.json');
+        const r = await fetch('data/projects.json', { cache: 'no-cache' });
         if (r.ok) jsonData = await r.json();
       } catch (_) {}
 
