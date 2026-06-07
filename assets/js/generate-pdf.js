@@ -545,8 +545,6 @@ ${baseCSS()}
           .map(para => `<p class="pf-proj-desc">${para}</p>`)
           .join('');
         const techList = (p.technologies || []).join(' &middot; ');
-        const featList = (p.features || []).length
-          ? `<ul class="pf-proj-feat">${(p.features || []).map(f => `<li>${f}</li>`).join('')}</ul>` : '';
 
         if (!hasImage) {
           return `
@@ -554,7 +552,6 @@ ${baseCSS()}
               <span class="pf-proj-cat">${p.category || ''}</span>
               <span class="pf-proj-name">${p.title || ''}</span>
               ${descHTML}
-              ${featList}
               ${techList ? `<span class="pf-proj-tech">${techList}</span>` : ''}
             </div>`;
         }
@@ -567,7 +564,6 @@ ${baseCSS()}
             <span class="pf-proj-cat">${p.category || ''}</span>
             <span class="pf-proj-name">${p.title || ''}</span>
             ${descHTML}
-            ${featList}
             ${techList ? `<span class="pf-proj-tech">${techList}</span>` : ''}
           </div>`;
         const imageCell = `<div class="pf-proj-img-wrap"><img src="${p.coverImage}" alt=""></div>`;
