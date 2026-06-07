@@ -313,7 +313,6 @@ ${baseCSS()}
 }
 .pdf-root .pf-proj-row-cell {
   display: table-cell;
-  width: 50%;
   vertical-align: top;
 }
 .pdf-root .pf-proj-details {
@@ -546,10 +545,12 @@ ${baseCSS()}
           </div>`;
         const imageCell = `<div class="pf-proj-img-wrap"><img src="${p.coverImage}" alt=""></div>`;
 
+        const detailsWidth = 'width:75%';
+        const imageWidth   = 'width:25%';
         return `
           <div class="pf-proj-row">
-            <div class="pf-proj-row-cell" style="padding-right:7px">${isEven ? detailsCell : imageCell}</div>
-            <div class="pf-proj-row-cell" style="padding-left:7px">${isEven ? imageCell : detailsCell}</div>
+            <div class="pf-proj-row-cell" style="${isEven ? detailsWidth+';padding-right:7px' : imageWidth+';padding-right:7px'}">${isEven ? detailsCell : imageCell}</div>
+            <div class="pf-proj-row-cell" style="${isEven ? imageWidth+';padding-left:7px'   : detailsWidth+';padding-left:7px'}">${isEven ? imageCell   : detailsCell}</div>
           </div>`;
       }).join('');
     })()}
