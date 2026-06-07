@@ -25,10 +25,6 @@
   <meta name="twitter:description" content="I build dashboards, monitoring systems, and web applications.">
   <meta name="twitter:image" content="assets/images/og-image.jpg">
 
-  <!-- Downloadable assets -->
-  <link rel="prefetch" href="assets/files/Adam_Afiq_Portfolio.pdf" as="document">
-  <link rel="prefetch" href="assets/files/Adam_Afiq_CV.pdf" as="document">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -273,14 +269,14 @@
         </div>
 
         <div class="reveal reveal-delay-4" style="margin-top: 28px;">
-          <a href="assets/files/cv-adam-afiq.pdf" class="btn btn-secondary" target="_blank" rel="noopener">
+          <button type="button" class="btn btn-secondary" onclick="downloadCVPDF()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
             Download CV
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -619,12 +615,10 @@
 
         <!-- Download buttons -->
         <div class="download-actions">
-          <a href="assets/files/Adam_Afiq_Portfolio.pdf"
+          <button type="button"
              class="download-btn download-btn-primary"
-             target="_blank"
-             rel="noopener"
-             download="Adam_Afiq_Portfolio.pdf"
-             aria-label="Download Portfolio PDF">
+             onclick="downloadPortfolioPDF()"
+             aria-label="Generate and download Portfolio PDF">
             <div class="download-btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -635,19 +629,17 @@
             </div>
             <div class="download-btn-text">
               <span class="download-btn-name">Download Portfolio</span>
-              <span class="download-btn-hint">PDF · Complete Portfolio Document</span>
+              <span class="download-btn-hint">Auto-generated PDF · Full Portfolio</span>
             </div>
             <svg class="download-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <polyline points="7 10 12 15 17 10"/>
             </svg>
-          </a>
+          </button>
 
-          <a href="assets/files/Adam_Afiq_CV.pdf"
+          <button type="button"
              class="download-btn download-btn-secondary"
-             target="_blank"
-             rel="noopener"
-             download="Adam_Afiq_CV.pdf"
-             aria-label="Download Resume / CV PDF">
+             onclick="downloadCVPDF()"
+             aria-label="Generate and download Resume / CV PDF">
             <div class="download-btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -658,12 +650,12 @@
             </div>
             <div class="download-btn-text">
               <span class="download-btn-name">Download Resume / CV</span>
-              <span class="download-btn-hint">PDF · Resume &amp; Work History</span>
+              <span class="download-btn-hint">Auto-generated PDF · Resume &amp; Work History</span>
             </div>
             <svg class="download-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <polyline points="7 10 12 15 17 10"/>
             </svg>
-          </a>
+          </button>
         </div>
 
         <p class="download-note">
@@ -884,5 +876,7 @@
 <!-- Scripts -->
 <script src="assets/js/main.js"></script>
 <script src="assets/js/projects.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
+<script src="assets/js/generate-pdf.js"></script>
 </body>
 </html>

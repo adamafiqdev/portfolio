@@ -142,9 +142,12 @@ ul { list-style: none; }
   border-radius: var(--radius);
   font-size: 14px;
   font-weight: 600;
+  font-family: var(--font);
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-primary {
@@ -1951,6 +1954,11 @@ textarea.form-control {
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font);
+  font-size: inherit;
+  cursor: pointer;
 }
 
 .download-btn::after {
