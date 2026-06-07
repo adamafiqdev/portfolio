@@ -1,5 +1,4 @@
 {
-  "_v": 2,
   "projects": [
     {
       "id": "project-1",
@@ -83,7 +82,7 @@
         "Business",
         "Reporting"
       ],
-      "githubUrl": "https://github.com/adamafiq/inventory-system",
+      "githubUrl": "https://github.com/muhdadamafiq/inventory-system",
       "demoUrl": "",
       "status": "completed"
     },
@@ -124,7 +123,7 @@
         "Automation",
         "Raspberry Pi"
       ],
-      "githubUrl": "https://github.com/adamafiq/iot-platform",
+      "githubUrl": "https://github.com/muhdadamafiq/iot-platform",
       "demoUrl": "",
       "status": "completed"
     },
@@ -138,8 +137,10 @@
       "longDescription": "",
       "features": [],
       "featured": false,
-      "coverImage": "",
-      "screenshots": [],
+      "coverImage": "images/photo_7_2025-05-30_10-20-22.jpg",
+      "screenshots": [
+        "images/photo_7_2025-05-30_10-20-22.jpg"
+      ],
       "technologies": [],
       "tags": [],
       "githubUrl": "",
@@ -316,8 +317,11 @@
         "Centralized data access"
       ],
       "featured": false,
-      "coverImage": "",
-      "screenshots": [],
+      "coverImage": "images/photo_13_2025-05-30_10-20-22.jpg",
+      "screenshots": [
+        "images/photo_13_2025-05-30_10-20-22.jpg",
+        "images/photo_3_2025-05-30_10-20-22.jpg"
+      ],
       "technologies": [],
       "tags": [],
       "githubUrl": "",
