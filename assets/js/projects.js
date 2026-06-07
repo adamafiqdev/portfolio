@@ -128,7 +128,8 @@
     });
 
     currentIdx = 0;
-    updateTrack(false);
+    // defer one frame so the browser has laid out card widths
+    requestAnimationFrame(() => updateTrack(false));
 
     if (prevBtn) prevBtn.addEventListener('click', () => { slidePrev(); startAuto(); });
     if (nextBtn) nextBtn.addEventListener('click', () => { slideNext(); startAuto(); });
