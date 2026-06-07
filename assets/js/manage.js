@@ -489,6 +489,20 @@
     showToast('projects.json downloaded — copy it to your data/ folder');
   }
 
+  function exportSiteJSON() {
+    const out = Object.assign({}, siteData, { _v: (siteJsonVersion || 1) + 1 });
+    const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'site.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    siteJsonVersion = out._v;
+    localStorage.setItem(SITE_V_KEY, String(siteJsonVersion));
+    showToast('site.json downloaded — copy it to your data/ folder, then push to GitHub');
+  }
+
   // ── JSON Import ───────────────────────────────────────────
   function importJSON() {
     const input = document.createElement('input');
@@ -1111,6 +1125,7 @@
   // ── Init ──────────────────────────────────────────────────
   document.getElementById('addProjectBtn')?.addEventListener('click', showNewForm);
   document.getElementById('exportBtn')?.addEventListener('click', exportJSON);
+  document.getElementById('exportSiteBtn')?.addEventListener('click', exportSiteJSON);
   document.getElementById('importBtn')?.addEventListener('click', importJSON);
 
   document.getElementById('confirmOk')?.addEventListener('click', executeDelete);

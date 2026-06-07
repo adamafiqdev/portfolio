@@ -134,11 +134,11 @@
     const locationEl = document.getElementById('contactLocation');
     const formEl     = document.getElementById('contactForm');
     const badgeEl    = document.getElementById('heroBadgeText');
-    if (emailEl    && contact.email)        emailEl.textContent    = contact.email;
-    if (githubEl   && contact.github)       githubEl.textContent   = contact.github;
-    if (locationEl && contact.location)     locationEl.textContent = contact.location;
-    if (formEl     && contact.formAction)   formEl.action          = contact.formAction;
-    if (badgeEl    && contact.availability) badgeEl.textContent    = contact.availability;
+    if (emailEl    && contact.email    != null) emailEl.textContent    = contact.email;
+    if (githubEl   && contact.github   != null) githubEl.textContent   = contact.github;
+    if (locationEl && contact.location != null) locationEl.textContent = contact.location;
+    if (formEl     && contact.formAction)        formEl.action          = contact.formAction;
+    if (badgeEl    && contact.availability != null) badgeEl.textContent = contact.availability;
   }
 
   function applyAll(data) {
