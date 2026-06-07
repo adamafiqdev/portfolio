@@ -478,7 +478,9 @@
 
   // ── JSON Export ───────────────────────────────────────────
   function exportJSON() {
-    const data = { projects };
+    const currentVersion = parseInt(localStorage.getItem('portfolio_projects_v') || '1', 10);
+    const nextVersion = currentVersion + 1;
+    const data = { _v: nextVersion, projects };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -486,7 +488,8 @@
     a.download = 'projects.json';
     a.click();
     URL.revokeObjectURL(url);
-    showToast('projects.json downloaded — copy it to your data/ folder');
+    localStorage.setItem('portfolio_projects_v', String(nextVersion));
+    showToast('projects.json downloaded — copy it to your data/ folder, then push to GitHub');
   }
 
   function exportSiteJSON() {
