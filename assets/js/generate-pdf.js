@@ -130,14 +130,15 @@
   }
 
   // ── Portfolio HTML ───────────────────────────────────────
-  function portfolioHTML(projects, sd) {
+  function portfolioHTML(projects, sd, extraPhone, extraLocation) {
     const about    = sd.about    || {};
     const contact  = sd.contact  || {};
     const name     = about.name     || '';
     const role     = about.role     || '';
     const email    = contact.email    || '';
     const github   = contact.github   || '';
-    const location = contact.location || '';
+    const location = extraLocation || contact.location || '';
+    const phone    = extraPhone || '';
     const bio      = about.bio   || [];
     const stats    = about.stats || [];
     const techStack  = sd.techStack  || [];
@@ -484,6 +485,7 @@ ${baseCSS()}
     <div class="pf-sidebar">
       <span class="pf-sec">Contact</span>
       ${email    ? `<span class="pf-sk-item" style="font-size:8pt;word-break:break-all">${email}</span>`    : ''}
+      ${phone    ? `<span class="pf-sk-item" style="font-size:8pt">${phone}</span>`    : ''}
       ${github   ? `<span class="pf-sk-item" style="font-size:8pt">${github}</span>`   : ''}
       ${location ? `<span class="pf-sk-item" style="font-size:8pt">${location}</span>` : ''}
 
@@ -591,14 +593,15 @@ ${baseCSS()}
   }
 
   // ── CV HTML ──────────────────────────────────────────────
-  function cvHTML(sd) {
+  function cvHTML(sd, extraPhone, extraLocation) {
     const about    = sd.about    || {};
     const contact  = sd.contact  || {};
     const name     = about.name     || '';
     const role     = about.role     || '';
     const email    = contact.email    || '';
     const github   = contact.github   || '';
-    const location = contact.location || '';
+    const location = extraLocation || contact.location || '';
+    const phone    = extraPhone || '';
     const bio      = about.bio   || [];
     const stats    = about.stats || [];
     const techStack  = sd.techStack  || [];
@@ -716,6 +719,7 @@ ${baseCSS()}
     </div>
     <div class="cv-header-right">
       ${email    ? `<span class="cv-ci">${email}</span>`    : ''}
+      ${phone    ? `<span class="cv-ci">${phone}</span>`    : ''}
       ${github   ? `<span class="cv-ci">${github}</span>`   : ''}
       ${location ? `<span class="cv-ci">${location}</span>` : ''}
     </div>
@@ -797,6 +801,7 @@ ${baseCSS()}
       <div class="cv-side-sec">
         <span class="cv-side-title">Contact</span>
         ${email    ? `<span class="cv-side-item">${email}</span>`    : ''}
+        ${phone    ? `<span class="cv-side-item">${phone}</span>`    : ''}
         ${github   ? `<span class="cv-side-item">${github}</span>`   : ''}
         ${location ? `<span class="cv-side-item">${location}</span>` : ''}
       </div>
@@ -807,8 +812,70 @@ ${baseCSS()}
 </div>`;
   }
 
+  // ── Info modal ───────────────────────────────────────────
+  function showInfoModal() {
+    return new Promise((resolve, reject) => {
+      const overlay     = document.getElementById('pdfInfoModal');
+      const phoneEl     = document.getElementById('pdfPhone');
+      const locationEl  = document.getElementById('pdfLocation');
+      const passwordEl  = document.getElementById('pdfPassword');
+      const pwWrap      = document.getElementById('pdfPasswordWrap');
+      const pwErr       = document.getElementById('pdfPasswordErr');
+      const submitBtn   = document.getElementById('pdfModalSubmit');
+      const cancelBtn   = document.getElementById('pdfModalCancel');
+      const closeBtn    = document.getElementById('pdfModalClose');
+
+      // Reset state
+      phoneEl.value    = '';
+      locationEl.value = '';
+      passwordEl.value = '';
+      pwWrap.hidden    = true;
+      pwErr.hidden     = true;
+
+      function checkFields() {
+        const hasExtra = phoneEl.value.trim() || locationEl.value.trim();
+        pwWrap.hidden = !hasExtra;
+        if (!hasExtra) pwErr.hidden = true;
+      }
+      phoneEl.addEventListener('input', checkFields);
+      locationEl.addEventListener('input', checkFields);
+
+      overlay.setAttribute('aria-hidden', 'false');
+      phoneEl.focus();
+
+      function cleanup() {
+        phoneEl.removeEventListener('input', checkFields);
+        locationEl.removeEventListener('input', checkFields);
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+
+      function cancel() { cleanup(); reject(); }
+
+      function submit() {
+        const phone    = phoneEl.value.trim();
+        const location = locationEl.value.trim();
+        if (phone || location) {
+          if (passwordEl.value !== 'adamafiqdev') {
+            pwErr.hidden = false;
+            passwordEl.value = '';
+            passwordEl.focus();
+            return;
+          }
+        }
+        cleanup();
+        resolve({ phone, location });
+      }
+
+      submitBtn.onclick  = submit;
+      cancelBtn.onclick  = cancel;
+      closeBtn.onclick   = cancel;
+      passwordEl.onkeydown = e => { if (e.key === 'Enter') submit(); };
+      overlay.onclick = e => { if (e.target === overlay) cancel(); };
+    });
+  }
+
   // ── Core generator ───────────────────────────────────────
-  async function generate(type) {
+  async function generate(type, extraPhone, extraLocation) {
     if (typeof html2pdf === 'undefined') {
       toast('PDF library not loaded — check your internet connection and refresh.', 'error');
       return;
@@ -869,7 +936,9 @@ ${baseCSS()}
     // The loading overlay (position:fixed) covers it visually.
     const container = document.createElement('div');
     container.style.cssText = 'width:794px;background:#fff;margin:0;padding:0;';
-    container.innerHTML = isPF ? portfolioHTML(projects, siteData) : cvHTML(siteData);
+    container.innerHTML = isPF
+      ? portfolioHTML(projects, siteData, extraPhone, extraLocation)
+      : cvHTML(siteData, extraPhone, extraLocation);
     document.body.appendChild(container);
 
     // Give the browser TWO paint cycles to lay out & render before capture.
@@ -907,7 +976,16 @@ ${baseCSS()}
   }
 
   // ── Public API ───────────────────────────────────────────
-  window.downloadPortfolioPDF = () => generate('portfolio');
-  window.downloadCVPDF        = () => generate('cv');
+  async function startDownload(type) {
+    try {
+      const { phone, location } = await showInfoModal();
+      await generate(type, phone, location);
+    } catch (_) {
+      // user cancelled — do nothing
+    }
+  }
+
+  window.downloadPortfolioPDF = () => startDownload('portfolio');
+  window.downloadCVPDF        = () => startDownload('cv');
 
 })();

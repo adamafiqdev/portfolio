@@ -2080,6 +2080,118 @@ textarea.form-control {
 }
 
 /* ============================================================
+   PDF DOWNLOAD MODAL
+============================================================ */
+.pdf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(9,9,11,0.80);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.pdf-modal-overlay[aria-hidden="true"] {
+  display: none;
+}
+.pdf-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+.pdf-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.pdf-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.pdf-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+.pdf-modal-close:hover { color: var(--text-primary); }
+.pdf-modal-desc {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.pdf-modal-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.pdf-modal-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.pdf-modal-opt {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+.pdf-modal-req {
+  font-weight: 600;
+  font-size: 11px;
+  color: #f97316;
+  margin-left: 6px;
+}
+.pdf-modal-input {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.pdf-modal-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+.pdf-modal-pw-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pdf-modal-pw-err {
+  font-size: 12.5px;
+  color: #ef4444;
+  margin: 0;
+}
+.pdf-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* ============================================================
    RESPONSIVE
 ============================================================ */
 @media (max-width: 1024px) {

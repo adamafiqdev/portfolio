@@ -876,11 +876,43 @@
   }
 </style>
 
+<!-- PDF Download Modal -->
+<div id="pdfInfoModal" class="pdf-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+  <div class="pdf-modal">
+    <div class="pdf-modal-header">
+      <h3 class="pdf-modal-title" id="pdfModalTitle">Download PDF</h3>
+      <button class="pdf-modal-close" id="pdfModalClose" aria-label="Close modal">&times;</button>
+    </div>
+    <p class="pdf-modal-desc">Optionally add your contact details to include them in the PDF. If provided, a password is required.</p>
+    <div class="pdf-modal-fields">
+      <label class="pdf-modal-label">
+        Phone Number <span class="pdf-modal-opt">optional</span>
+        <input type="tel" id="pdfPhone" class="pdf-modal-input" placeholder="+60 12-345 6789" autocomplete="tel">
+      </label>
+      <label class="pdf-modal-label">
+        Location <span class="pdf-modal-opt">optional</span>
+        <input type="text" id="pdfLocation" class="pdf-modal-input" placeholder="Kuala Lumpur, Malaysia" autocomplete="address-level1">
+      </label>
+      <div id="pdfPasswordWrap" class="pdf-modal-pw-wrap" hidden>
+        <label class="pdf-modal-label">
+          Password <span class="pdf-modal-req">required</span>
+          <input type="password" id="pdfPassword" class="pdf-modal-input" placeholder="Enter password" autocomplete="off">
+        </label>
+        <p id="pdfPasswordErr" class="pdf-modal-pw-err" hidden>Incorrect password. Please try again.</p>
+      </div>
+    </div>
+    <div class="pdf-modal-actions">
+      <button type="button" class="btn btn-secondary" id="pdfModalCancel">Cancel</button>
+      <button type="button" class="btn btn-primary" id="pdfModalSubmit">Download</button>
+    </div>
+  </div>
+</div>
+
 <!-- Scripts -->
 <script src="assets/js/site-data.js?v=3"></script>
 <script src="assets/js/main.js?v=1"></script>
 <script src="assets/js/projects.js?v=1"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
-<script src="assets/js/generate-pdf.js?v=10"></script>
+<script src="assets/js/generate-pdf.js?v=11"></script>
 </body>
 </html>
