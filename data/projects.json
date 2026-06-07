@@ -1,5 +1,5 @@
 {
-  "_v": 1,
+  "_v": 5,
   "projects": [
     {
       "id": "project-1",
@@ -156,11 +156,7 @@
       "date": "",
       "description": "An IoT-based surau occupancy monitoring system powered by Raspberry Pi 5 and Arduino, utilizing ultrasonic sensors to detect occupancy status and provide real-time updates through a web dashboard.",
       "longDescription": "Developed an IoT-based surau occupancy monitoring system using Raspberry Pi 5, Arduino, and ultrasonic sensors to provide real-time visibility of surau usage. The system detects the presence of occupants and allows users to indicate male or female occupancy status through dedicated controls.\n\nRaspberry Pi 5 serves as the central controller, processing occupancy data and synchronizing status updates with a web-based dashboard. To ensure accurate information, the system automatically resets occupancy indicators when no presence is detected for a predefined duration, preventing outdated status information from being displayed.\n\nThe solution enables users to remotely check surau availability and occupancy status in real time through a centralized monitoring platform.",
-      "features": [],
-      "featured": false,
-      "coverImage": "",
-      "screenshots": [],
-      "technologies": [
+      "features": [
         "Python",
         "Raspberry Pi 5",
         "Arduino",
@@ -170,6 +166,10 @@
         "JavaScript",
         "MySQL"
       ],
+      "featured": false,
+      "coverImage": "",
+      "screenshots": [],
+      "technologies": [],
       "tags": [],
       "githubUrl": "",
       "demoUrl": "",
