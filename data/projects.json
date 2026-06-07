@@ -1,0 +1,90 @@
+{
+  "projects": [
+    {
+      "id": "project-1",
+      "title": "Network Monitoring Dashboard",
+      "slug": "network-monitoring-dashboard",
+      "category": "monitoring",
+      "tags": ["Monitoring", "Real-time", "Dashboard"],
+      "description": "A comprehensive real-time network monitoring system that tracks bandwidth, latency, packet loss, and device uptime across distributed network infrastructure.",
+      "longDescription": "Built for an enterprise environment managing 50+ network devices, this monitoring dashboard provides real-time visibility into network health. The system polls devices via SNMP every 30 seconds, stores metrics in MySQL, and presents live data through an interactive dashboard. Features include automated alerting when thresholds are breached, historical trend analysis with customizable time ranges, and detailed per-device reports.",
+      "features": [
+        "Real-time SNMP polling at 30-second intervals",
+        "Interactive charts with zoom and pan capabilities",
+        "Automated threshold-based email/SMS alerting",
+        "Historical trend analysis with custom time ranges",
+        "Multi-device comparison views",
+        "Exportable PDF and Excel reports"
+      ],
+      "technologies": ["PHP", "JavaScript", "MySQL", "Bootstrap", "Chart.js", "SNMP"],
+      "coverImage": "assets/projects/project-1/cover.jpg",
+      "screenshots": [
+        "assets/projects/project-1/cover.jpg",
+        "assets/projects/project-1/screenshot-2.jpg",
+        "assets/projects/project-1/screenshot-3.jpg"
+      ],
+      "githubUrl": "https://github.com/muhdadamafiq/network-monitor",
+      "demoUrl": "",
+      "featured": true,
+      "date": "2024-03",
+      "status": "completed"
+    },
+    {
+      "id": "project-2",
+      "title": "Inventory Management System",
+      "slug": "inventory-management-system",
+      "category": "internal-tools",
+      "tags": ["Internal Tools", "Business", "Reporting"],
+      "description": "A full-featured inventory management system with real-time stock tracking, purchase order management, supplier management, and automated reorder notifications.",
+      "longDescription": "Developed for a mid-sized retail operation, this system replaced manual spreadsheet tracking with a centralized web application. Stock levels are tracked across multiple warehouse locations, supplier relationships are managed centrally, and automated purchase orders are triggered when stock falls below defined thresholds. The dashboard provides clear KPI metrics and exportable reports.",
+      "features": [
+        "Multi-location stock management and transfers",
+        "Automated reorder point alerts",
+        "Supplier and purchase order management",
+        "Barcode scanning support",
+        "Comprehensive transaction audit trail",
+        "Dashboard with real-time KPI metrics"
+      ],
+      "technologies": ["PHP", "MySQL", "JavaScript", "Bootstrap", "HTML", "CSS"],
+      "coverImage": "assets/projects/project-2/cover.jpg",
+      "screenshots": [
+        "assets/projects/project-2/cover.jpg",
+        "assets/projects/project-2/screenshot-2.jpg"
+      ],
+      "githubUrl": "https://github.com/muhdadamafiq/inventory-system",
+      "demoUrl": "",
+      "featured": true,
+      "date": "2023-11",
+      "status": "completed"
+    },
+    {
+      "id": "project-3",
+      "title": "IoT Sensor Monitoring Platform",
+      "slug": "iot-sensor-platform",
+      "category": "monitoring",
+      "tags": ["IoT", "Monitoring", "Automation", "Raspberry Pi"],
+      "description": "An IoT platform collecting, storing, and visualizing data from distributed Raspberry Pi sensor nodes, providing real-time environmental monitoring and automated alerts.",
+      "longDescription": "Designed for facility management, this platform connects multiple Raspberry Pi sensor nodes to a central web dashboard. Each node monitors temperature, humidity, and power consumption. The system provides real-time visualization, historical analysis, and automated threshold-based notifications via email and Telegram. WebSocket connections ensure the dashboard reflects live sensor data without page refreshes.",
+      "features": [
+        "Multi-node sensor data collection via MQTT",
+        "Real-time visualization with WebSocket updates",
+        "Configurable alert thresholds per sensor",
+        "7-day and 30-day trend analysis",
+        "Email and Telegram notifications",
+        "Mobile-responsive interface"
+      ],
+      "technologies": ["Python", "JavaScript", "MySQL", "Raspberry Pi", "WebSocket", "Chart.js"],
+      "coverImage": "assets/projects/project-3/cover.jpg",
+      "screenshots": [
+        "assets/projects/project-3/cover.jpg",
+        "assets/projects/project-3/screenshot-2.jpg",
+        "assets/projects/project-3/screenshot-3.jpg"
+      ],
+      "githubUrl": "https://github.com/muhdadamafiq/iot-platform",
+      "demoUrl": "",
+      "featured": true,
+      "date": "2024-01",
+      "status": "completed"
+    }
+  ]
+}

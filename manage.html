@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Manager — Adam Afiq Portfolio</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/manage.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     APP SHELL
+════════════════════════════════════════════════════════ -->
+<div class="manage-app">
+
+  <!-- Header -->
+  <header class="manage-header">
+    <div class="manage-header-left">
+      <a href="index.html" class="manage-logo">
+        <div class="manage-logo-mark">A</div>
+        Adam Afiq
+      </a>
+      <div class="manage-breadcrumb">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+        <span>Project Manager</span>
+      </div>
+    </div>
+
+    <div class="manage-header-right">
+      <button class="btn btn-secondary btn-sm" id="importBtn" title="Import projects.json">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        Import JSON
+      </button>
+      <button class="btn btn-success btn-sm" id="exportBtn" title="Export as projects.json">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Export JSON
+      </button>
+      <button class="btn btn-secondary btn-sm" id="themeToggleManage" title="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+        Theme
+      </button>
+      <a href="index.html" class="btn btn-secondary btn-sm" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+        </svg>
+        View Portfolio
+      </a>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <div class="manage-body">
+
+    <!-- Sidebar -->
+    <aside class="manage-sidebar">
+      <div class="sidebar-top">
+        <button class="btn btn-primary btn-full" id="addProjectBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Add Project
+        </button>
+        <div class="sidebar-search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input class="sidebar-search-input" id="sidebarSearch" type="text" placeholder="Search projects...">
+        </div>
+        <div class="project-count" id="projectCount">0 projects</div>
+      </div>
+
+      <div class="project-list" id="projectList">
+        <!-- Populated by manage.js -->
+      </div>
+
+      <!-- Instructions Panel -->
+      <div style="padding: 12px; border-top: 1px solid var(--border);">
+        <div style="font-size: 11px; color: var(--text-muted); line-height: 1.7;">
+          <strong style="color: var(--text-secondary); display: block; margin-bottom: 4px;">How to publish:</strong>
+          1. Add/edit your projects here<br>
+          2. Click <strong>Export JSON</strong><br>
+          3. Place the file at <code style="font-size:10px">data/projects.json</code><br>
+          4. Push all files to GitHub Pages
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="manage-content">
+      <div id="managePanel">
+        <!-- Populated by manage.js -->
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     CONFIRM DELETE DIALOG
+════════════════════════════════════════════════════════ -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-dialog">
+    <h3 class="confirm-title" id="confirmTitle">Delete Project?</h3>
+    <p class="confirm-desc" id="confirmDesc">This action cannot be undone.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-secondary" id="confirmCancel">Cancel</button>
+      <button class="btn btn-danger" id="confirmOk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6l-1 14H6L5 6"/>
+          <path d="M10 11v6M14 11v6"/>
+          <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+        </svg>
+        Delete Project
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     TOAST NOTIFICATIONS
+════════════════════════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Script -->
+<script src="assets/js/manage.js"></script>
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Adam Afiq — Software Developer</title>
+  <meta name="description" content="Software Developer specializing in dashboards, monitoring systems, web applications, and automation tools that transform complex data into actionable insights.">
+  <meta name="keywords" content="software developer, dashboard development, monitoring systems, web applications, internal tools, automation, data visualization, Malaysia">
+  <meta name="author" content="Muhammad Adam Afiq">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adam Afiq — Software Developer">
+  <meta property="og:description" content="I build dashboards, monitoring systems, and web applications that transform complex data into actionable insights.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:url" content="https://muhdadamafiq.github.io">
+  <meta property="og:site_name" content="Adam Afiq Portfolio">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adam Afiq — Software Developer">
+  <meta name="twitter:description" content="I build dashboards, monitoring systems, and web applications.">
+  <meta name="twitter:image" content="assets/images/og-image.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark">A</div>
+      Adam Afiq
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#technologies" class="nav-link">Tech Stack</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <!-- Moon icon (shown in dark mode) -->
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+        <!-- Sun icon (shown in light mode) -->
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+      <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <!-- Hero Text -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Available for new projects
+        </div>
+
+        <h1 class="hero-title">
+          Building Practical<br>
+          <span class="gradient-text">Software Solutions</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          I create dashboards, monitoring systems, and web applications
+          that help transform complex data into actionable insights.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary btn-arrow">
+            View Projects
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+
+      <!-- Animated Dashboard Mockup -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="db-window">
+          <!-- Title Bar -->
+          <div class="db-titlebar">
+            <div class="db-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="db-title">Analytics Dashboard</div>
+            <div class="db-live">
+              <span class="db-live-dot"></span>LIVE
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="db-body">
+            <!-- KPI Metrics -->
+            <div class="db-metrics">
+              <div class="db-metric-card">
+                <div class="db-metric-label">Active Users</div>
+                <div class="db-metric-val">2,847</div>
+                <div class="db-metric-change up">↑ 12.5%</div>
+              </div>
+              <div class="db-metric-card">
+                <div class="db-metric-label">Uptime</div>
+                <div class="db-metric-val">99.9%</div>
+                <div class="db-metric-change neutral">Stable</div>
+              </div>
+              <div class="db-metric-card">
+                <div class="db-metric-label">Response</div>
+                <div class="db-metric-val">124ms</div>
+                <div class="db-metric-change up">↓ 8ms</div>
+              </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="db-chart-box">
+              <div class="db-chart-header">
+                <span class="db-chart-title">Traffic Overview</span>
+                <div class="db-chips">
+                  <span class="db-chip active">7D</span>
+                  <span class="db-chip">30D</span>
+                  <span class="db-chip">90D</span>
+                </div>
+              </div>
+              <div class="db-chart-area">
+                <svg class="db-chart-svg" viewBox="0 0 400 80" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path class="chart-area"
+                    d="M0,70 C40,55 80,60 120,40 C160,20 200,50 240,35 C280,20 320,10 360,22 C380,28 390,30 400,28 L400,80 L0,80 Z"/>
+                  <path class="chart-line"
+                    d="M0,70 C40,55 80,60 120,40 C160,20 200,50 240,35 C280,20 320,10 360,22 C380,28 390,30 400,28"/>
+                  <circle class="chart-point" cx="400" cy="28" r="4"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Status List -->
+            <div class="db-status-list">
+              <div class="db-status-row">
+                <span class="db-status-indicator online"></span>
+                <span class="db-status-name">API Server</span>
+                <span class="db-status-val">Online</span>
+              </div>
+              <div class="db-status-row">
+                <span class="db-status-indicator online"></span>
+                <span class="db-status-name">Database</span>
+                <span class="db-status-val">Healthy</span>
+              </div>
+              <div class="db-status-row">
+                <span class="db-status-indicator warning"></span>
+                <span class="db-status-name">Storage</span>
+                <span class="db-status-val">72% used</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Image -->
+      <div class="about-image-wrap reveal">
+        <div class="about-image-box">
+          <img src="assets/images/profile.jpg" alt="Adam Afiq" onerror="this.style.display='none'; this.parentElement.querySelector('.about-image-placeholder').style.display='flex'">
+          <div class="about-image-placeholder" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:0.15;">👤</div>
+        </div>
+        <div class="about-badge">
+          <span class="about-badge-num" data-target="3" data-suffix="+">0+</span>
+          Years Experience
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="about-content">
+        <div class="section-label reveal">About Me</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Turning complexity into<br>clear, working software
+        </h2>
+        <p class="about-bio reveal reveal-delay-2">
+          I'm <strong>Adam Afiq</strong>, a Software Developer focused on building practical systems
+          that solve real business problems. I specialize in <strong>dashboards and monitoring applications</strong>
+          that give teams instant visibility into their data, <strong>internal tools</strong> that automate
+          workflows, and <strong>web applications</strong> built for reliability and usability.
+        </p>
+        <p class="about-bio reveal reveal-delay-2" style="margin-top: -8px; margin-bottom: 40px;">
+          My approach is straightforward: understand the problem deeply, build a clean solution,
+          and deliver something that actually gets used. I care about performance, maintainability,
+          and making complex systems feel simple.
+        </p>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="stat-num" data-target="15" data-suffix="+">0+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-num" data-target="10" data-suffix="+">0+</div>
+            <div class="stat-label">Satisfied Clients</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-num" data-target="99" data-suffix=".9%">0%</div>
+            <div class="stat-label">Avg. System Uptime</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-4">
+            <div class="stat-num" data-target="50" data-suffix="+">0+</div>
+            <div class="stat-label">Devices Monitored</div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4" style="margin-top: 28px;">
+          <a href="assets/files/cv-adam-afiq.pdf" class="btn btn-secondary" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════════════ -->
+<section class="section services-section" id="services">
+  <div class="container">
+    <div class="section-label reveal">What I Build</div>
+    <h2 class="section-title reveal reveal-delay-1">Services</h2>
+    <p class="section-subtitle reveal reveal-delay-2">
+      I build focused software solutions that give teams visibility, control,
+      and efficiency in their daily operations.
+    </p>
+
+    <div class="services-grid">
+
+      <!-- Dashboard Development -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Dashboard Development</h3>
+        <p class="service-desc">Custom analytics dashboards that turn raw data into clear, interactive visualizations — built to be fast, intuitive, and always up to date.</p>
+      </div>
+
+      <!-- Monitoring Systems -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Monitoring Systems</h3>
+        <p class="service-desc">Real-time monitoring solutions that track system health, network performance, and IoT sensors — with alerts when things need attention.</p>
+      </div>
+
+      <!-- Internal Tools -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Internal Tools</h3>
+        <p class="service-desc">Purpose-built web applications that streamline your team's workflows — inventory systems, approval flows, staff portals, and more.</p>
+      </div>
+
+      <!-- Reporting Systems -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Reporting Systems</h3>
+        <p class="service-desc">Automated reporting platforms that generate and distribute scheduled reports — PDF exports, Excel summaries, and email delivery built in.</p>
+      </div>
+
+      <!-- Web Applications -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Web Applications</h3>
+        <p class="service-desc">Robust, user-friendly web applications built for reliability and performance — from simple CRUD tools to multi-user systems with role-based access.</p>
+      </div>
+
+      <!-- Automation -->
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M9 9l3 3-3 3M13 15h3"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Automation Solutions</h3>
+        <p class="service-desc">Smart automation systems that eliminate repetitive tasks — data collection scripts, scheduled jobs, notification bots, and workflow integrations.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════════════════ -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="projects-header">
+      <div>
+        <div class="section-label reveal">Portfolio</div>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">Featured Projects</h2>
+      </div>
+
+      <div class="projects-controls">
+        <!-- Search -->
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input class="search-input" id="projectSearch" type="text" placeholder="Search projects...">
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs" id="filterTabs"></div>
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Loaded dynamically from projects.json -->
+      <div style="grid-column:1/-1; text-align:center; padding: 60px 0; color: var(--text-muted);">
+        <div style="font-size: 14px;">Loading projects...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     TECHNOLOGIES
+════════════════════════════════════════════════════════ -->
+<section class="section technologies-section" id="technologies">
+  <div class="container">
+    <div style="text-align: center; max-width: 540px; margin: 0 auto 56px;">
+      <div class="section-label reveal" style="justify-content: center;">Tech Stack</div>
+      <h2 class="section-title reveal reveal-delay-1">Tools I Work With</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="margin: 0 auto;">
+        A focused set of technologies for building reliable, maintainable software.
+      </p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-item reveal">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" loading="lazy">
+        </div>
+        <span class="tech-name">PHP</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-1">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy">
+        </div>
+        <span class="tech-name">JavaScript</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-2">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" loading="lazy">
+        </div>
+        <span class="tech-name">Python</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-3">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy">
+        </div>
+        <span class="tech-name">MySQL</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-4">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" loading="lazy">
+        </div>
+        <span class="tech-name">HTML</span>
+      </div>
+      <div class="tech-item reveal">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" loading="lazy">
+        </div>
+        <span class="tech-name">CSS</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-1">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" loading="lazy">
+        </div>
+        <span class="tech-name">Bootstrap</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-2">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" loading="lazy">
+        </div>
+        <span class="tech-name">Git</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-3">
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" loading="lazy" style="filter: var(--github-filter, invert(0))">
+        </div>
+        <span class="tech-name">GitHub</span>
+      </div>
+      <div class="tech-item reveal reveal-delay-4">
+        <div class="tech-icon" style="font-size: 32px; color: var(--text-secondary);">
+          🍓
+        </div>
+        <span class="tech-name">Raspberry Pi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     EXPERIENCE
+════════════════════════════════════════════════════════ -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-label reveal">Background</div>
+    <h2 class="section-title reveal reveal-delay-1">Experience</h2>
+
+    <div class="timeline">
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-dot">
+          <div class="timeline-dot-inner"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-period">2023 — Present</div>
+          <div class="timeline-role">Software Developer</div>
+          <div class="timeline-company">Freelance / Independent</div>
+          <p class="timeline-desc">
+            Developing custom monitoring dashboards, internal business tools, and web applications
+            for clients across various industries. Delivering end-to-end solutions from requirements
+            gathering through deployment and ongoing support.
+          </p>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Dashboard Development</span>
+            <span class="timeline-tag">Monitoring Systems</span>
+            <span class="timeline-tag">IoT Integration</span>
+            <span class="timeline-tag">Internal Tools</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-dot">
+          <div class="timeline-dot-inner"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-period">2021 — 2023</div>
+          <div class="timeline-role">Junior Software Developer</div>
+          <div class="timeline-company">Previous Company</div>
+          <p class="timeline-desc">
+            Built and maintained web-based business applications using PHP and MySQL.
+            Worked closely with operations teams to understand requirements and translate them
+            into functional software solutions. Developed reporting modules and data management tools.
+          </p>
+          <div class="timeline-tags">
+            <span class="timeline-tag">PHP</span>
+            <span class="timeline-tag">MySQL</span>
+            <span class="timeline-tag">Web Applications</span>
+            <span class="timeline-tag">Reporting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="timeline-dot">
+          <div class="timeline-dot-inner"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-period">2017 — 2021</div>
+          <div class="timeline-role">Diploma in Computer Science</div>
+          <div class="timeline-company">University / Polytechnic</div>
+          <p class="timeline-desc">
+            Studied core software development fundamentals including programming, databases,
+            networking, and system design. Developed multiple academic projects covering
+            web application development and basic IoT systems.
+          </p>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Computer Science</span>
+            <span class="timeline-tag">Programming</span>
+            <span class="timeline-tag">Databases</span>
+            <span class="timeline-tag">Networking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════════ -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <!-- Left: Info -->
+      <div class="contact-info">
+        <div class="section-label reveal">Get In Touch</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Let's build something together
+        </h2>
+        <p class="section-subtitle reveal reveal-delay-2" style="margin-bottom: 0;">
+          Have a project in mind? Whether it's a dashboard, monitoring system, or internal tool —
+          I'd love to hear about it. Send me a message and I'll get back to you within 24 hours.
+        </p>
+
+        <div class="contact-methods">
+          <div class="contact-method reveal reveal-delay-2">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-method-label">Email</div>
+              <div class="contact-method-value">muhdadamafiq@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="contact-method reveal reveal-delay-3">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-method-label">GitHub</div>
+              <div class="contact-method-value">github.com/muhdadamafiq</div>
+            </div>
+          </div>
+
+          <div class="contact-method reveal reveal-delay-4">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-method-label">Location</div>
+              <div class="contact-method-value">Malaysia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form reveal reveal-delay-2">
+        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="contactName">Your Name</label>
+              <input class="form-control" id="contactName" name="name" type="text" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactEmail">Email Address</label>
+              <input class="form-control" id="contactEmail" name="email" type="email" placeholder="john@company.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactSubject">Subject</label>
+            <input class="form-control" id="contactSubject" name="subject" type="text" placeholder="Project Inquiry — Dashboard Development">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactMessage">Message</label>
+            <textarea class="form-control" id="contactMessage" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px;">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+          <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px;">
+            I'll reply within 24 hours. For urgent projects, email me directly.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">
+        <div class="logo-mark">A</div>
+        Adam Afiq
+      </a>
+      <p class="footer-copy">© 2025 Adam Afiq. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://github.com/muhdadamafiq" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </a>
+        <a href="mailto:muhdadamafiq@gmail.com" class="social-btn" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════
+     PROJECT MODAL
+════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div>
+        <div class="modal-category-badge" id="modalCategoryBadge">Category</div>
+        <h2 class="modal-project-title" id="modalTitle">Project Title</h2>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Close project details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <!-- Gallery -->
+      <div class="modal-gallery">
+        <div class="modal-gallery-main">
+          <img id="modalMainImage" src="" alt="Project screenshot">
+          <div class="modal-gallery-nav">
+            <button id="modalPrev" aria-label="Previous screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button id="modalNext" aria-label="Next screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div class="modal-gallery-count" id="modalImageCount">1 / 1</div>
+        </div>
+        <div class="modal-thumbs" id="modalThumbs"></div>
+      </div>
+
+      <!-- Details -->
+      <div class="modal-details">
+        <div>
+          <p class="modal-desc" id="modalDescription"></p>
+        </div>
+
+        <div id="modalFeaturesSection">
+          <div class="modal-section-title">Key Features</div>
+          <div class="modal-features" id="modalFeatures"></div>
+        </div>
+
+        <div>
+          <div class="modal-section-title">Technologies</div>
+          <div class="modal-tech-tags" id="modalTechTags"></div>
+        </div>
+
+        <div class="modal-links">
+          <a href="#" id="modalGithubLink" target="_blank" rel="noopener" class="modal-link-btn modal-link-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+          <a href="#" id="modalDemoLink" target="_blank" rel="noopener" class="modal-link-btn modal-link-demo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     BACK TO TOP
+════════════════════════════════════════════════════════ -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<!-- GitHub icon filter for light mode -->
+<style>
+  [data-theme="light"] .tech-item img[alt="GitHub"] {
+    filter: invert(1) brightness(0.3);
+  }
+</style>
+
+<!-- Scripts -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/projects.js"></script>
+</body>
+</html>
