@@ -2116,8 +2116,8 @@ textarea.form-control {
 }
 
 .carousel-track .project-card {
-  flex: 0 0 calc(33.333% - 16px);
-  min-width: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .carousel-nav {
@@ -2350,7 +2350,11 @@ textarea.form-control {
   transform: rotate(90deg);
 }
 .pdf-adv-fields {
-  overflow: hidden;
+  display: none;
+  margin-top: 12px;
+}
+.pdf-adv-fields.open {
+  display: block;
 }
 
 /* ============================================================

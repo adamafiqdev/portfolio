@@ -45,9 +45,11 @@
 
   function getCardWidth() {
     if (!wrap) return 300;
+    const w = wrap.offsetWidth || wrap.getBoundingClientRect().width;
+    if (!w) return 300;
     const gap = 24;
     const vis = getVisible();
-    return (wrap.offsetWidth - gap * (vis - 1)) / vis;
+    return Math.floor((w - gap * (vis - 1)) / vis);
   }
 
   function maxIdx() {
@@ -59,16 +61,23 @@
     if (!track) return;
     const gap = 24;
     const cardW = getCardWidth();
+    const cards = track.querySelectorAll('.project-card');
 
-    // size every card
-    track.querySelectorAll('.project-card').forEach(c => {
-      c.style.width = cardW + 'px';
-      c.style.minWidth = cardW + 'px';
+    cards.forEach(c => {
+      c.style.width      = cardW + 'px';
+      c.style.minWidth   = cardW + 'px';
+      c.style.maxWidth   = cardW + 'px';
+      c.style.flexBasis  = cardW + 'px';
+      c.style.flexShrink = '0';
+      c.style.flexGrow   = '0';
     });
+
+    // set explicit track width so browser keeps cards in a single row
+    track.style.width = cards.length * cardW + (cards.length - 1) * gap + 'px';
 
     const offset = currentIdx * (cardW + gap);
     track.style.transition = animate === false ? 'none' : 'transform 0.7s cubic-bezier(0.4,0,0.2,1)';
-    track.style.transform = `translateX(-${offset}px)`;
+    track.style.transform  = `translateX(-${offset}px)`;
 
     updateDots();
   }

@@ -909,14 +909,14 @@ ${baseCSS()}
       profileImage     = '';
       imgPreview.innerHTML = placeholderHTML;
       imgClear.hidden  = true;
-      advFields.hidden = true;
+      advFields.classList.remove('open');
       advToggle.setAttribute('aria-expanded', 'false');
 
       // Advanced toggle
       advToggle.onclick = () => {
-        const open = advFields.hidden;
-        advFields.hidden = !open;
-        advToggle.setAttribute('aria-expanded', String(open));
+        const opening = !advFields.classList.contains('open');
+        advFields.classList.toggle('open', opening);
+        advToggle.setAttribute('aria-expanded', opening ? 'true' : 'false');
       };
 
       // Image selection — crop to center square via canvas
