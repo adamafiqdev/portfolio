@@ -224,15 +224,15 @@ ${baseCSS()}
 }
 .pdf-root .pf-sidebar {
   display: table-cell;
-  width: 36%;
-  padding: 26px 18px 28px 40px;
+  width: 25%;
+  padding: 26px 16px 28px 40px;
   border-right: 2px solid #bfdbfe;
   background: #f8fafc;
   vertical-align: top;
 }
 .pdf-root .pf-main {
   display: table-cell;
-  width: 64%;
+  width: 75%;
   padding: 26px 40px 28px 22px;
   vertical-align: top;
 }
@@ -471,11 +471,6 @@ ${baseCSS()}
     <div class="pf-header-main">
       <span class="pf-name">${name}</span>
       <span class="pf-role">${role}</span>
-      <div class="pf-contact-row">
-        ${email    ? `<span class="pf-contact-cell">${email}</span>`    : ''}
-        ${github   ? `<span class="pf-contact-cell">${github}</span>`   : ''}
-        ${location ? `<span class="pf-contact-cell">${location}</span>` : ''}
-      </div>
     </div>
     <div class="pf-header-deco">
       <span class="pf-deco-mono">${initials}</span>
@@ -487,7 +482,12 @@ ${baseCSS()}
   <div class="pf-body">
 
     <div class="pf-sidebar">
-      <span class="pf-sec">Technical Skills</span>
+      <span class="pf-sec">Contact</span>
+      ${email    ? `<span class="pf-sk-item" style="font-size:8pt;word-break:break-all">${email}</span>`    : ''}
+      ${github   ? `<span class="pf-sk-item" style="font-size:8pt">${github}</span>`   : ''}
+      ${location ? `<span class="pf-sk-item" style="font-size:8pt">${location}</span>` : ''}
+
+      <span class="pf-sec" style="margin-top:20px">Technical Skills</span>
       ${techStack.map(t => `<span class="pf-sk-item">${t.name}</span>`).join('')}
     </div>
 
@@ -501,6 +501,22 @@ ${baseCSS()}
             <span class="pf-stat-l">${s.label}</span>
           </div>`).join('')}
       </div>
+
+      <span class="pf-sec" style="margin-top:22px">Experience &amp; Background</span>
+      ${experience.map((exp, i) => `
+        <div class="pf-exp">
+          <div class="pf-exp-hdr">
+            <div class="pf-exp-hdr-l">
+              <span class="pf-exp-role">${exp.role || ''}</span>
+              <span class="pf-exp-co">${exp.company || ''}</span>
+            </div>
+            <div class="pf-exp-hdr-r"><span class="pf-exp-period">${exp.period || ''}</span></div>
+          </div>
+          <p class="pf-exp-desc">${exp.desc || ''}</p>
+          ${exp.tags && exp.tags.length ? `<div class="pf-exp-tags">${exp.tags.join(' &middot; ')}</div>` : ''}
+        </div>
+        ${i < experience.length - 1 ? '<div class="pf-divider"></div>' : ''}
+      `).join('')}
     </div>
 
   </div>
@@ -555,34 +571,19 @@ ${baseCSS()}
     })()}
   </div>
 
-  <!-- EXPERIENCE -->
-  <div class="pf-page page-break">
-    <span class="pf-sec">Experience &amp; Background</span>
-
-    ${experience.map((exp, i) => `
-      <div class="pf-exp">
-        <div class="pf-exp-hdr">
-          <div class="pf-exp-hdr-l">
-            <span class="pf-exp-role">${exp.role || ''}</span>
-            <span class="pf-exp-co">${exp.company || ''}</span>
-          </div>
-          <div class="pf-exp-hdr-r"><span class="pf-exp-period">${exp.period || ''}</span></div>
+  <!-- FOOTER: own page, pinned to bottom via table vertical-align -->
+  <!-- 267mm = A4 (297mm) minus top+bottom margins (15mm each) -->
+  <div style="page-break-before:always;display:table;width:210mm;min-height:267mm;table-layout:fixed;">
+    <div style="display:table-cell;vertical-align:bottom;">
+      <div class="pf-footer">
+        <span class="pf-footer-title">Let's Build Something Together</span>
+        <span class="pf-footer-sub">Open to new projects and collaborations. Feel free to reach out.</span>
+        <div class="pf-footer-row">
+          ${email    ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Email</span><span class="pf-footer-val">${email}</span></div>`       : ''}
+          ${github   ? `<div class="pf-footer-col"><span class="pf-footer-lbl">GitHub</span><span class="pf-footer-val">${github}</span></div>`      : ''}
+          ${location ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Location</span><span class="pf-footer-val">${location}</span></div>` : ''}
         </div>
-        <p class="pf-exp-desc">${exp.desc || ''}</p>
-        ${exp.tags && exp.tags.length ? `<div class="pf-exp-tags">${exp.tags.join(' &middot; ')}</div>` : ''}
       </div>
-      ${i < experience.length - 1 ? '<div class="pf-divider"></div>' : ''}
-    `).join('')}
-  </div>
-
-  <!-- FOOTER -->
-  <div class="pf-footer">
-    <span class="pf-footer-title">Let's Build Something Together</span>
-    <span class="pf-footer-sub">Open to new projects and collaborations. Feel free to reach out.</span>
-    <div class="pf-footer-row">
-      ${email    ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Email</span><span class="pf-footer-val">${email}</span></div>`       : ''}
-      ${github   ? `<div class="pf-footer-col"><span class="pf-footer-lbl">GitHub</span><span class="pf-footer-val">${github}</span></div>`      : ''}
-      ${location ? `<div class="pf-footer-col"><span class="pf-footer-lbl">Location</span><span class="pf-footer-val">${location}</span></div>` : ''}
     </div>
   </div>
 
