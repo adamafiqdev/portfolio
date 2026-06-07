@@ -218,7 +218,7 @@
 <section class="section" id="about">
   <div class="container">
     <div class="about-grid">
-      <!-- Content -->
+      <!-- Left: bio + button -->
       <div class="about-content">
         <div class="section-label reveal">About Me</div>
         <h2 class="section-title reveal reveal-delay-1">
@@ -230,13 +230,25 @@
           that give teams instant visibility into their data, <strong>internal tools</strong> that automate
           workflows, and <strong>web applications</strong> built for reliability and usability.
         </p>
-        <p class="about-bio reveal reveal-delay-2" id="aboutBio2" style="margin-top: -8px; margin-bottom: 40px;">
+        <p class="about-bio reveal reveal-delay-2" id="aboutBio2">
           My approach is straightforward: understand the problem deeply, build a clean solution,
           and deliver something that actually gets used. I care about performance, maintainability,
           and making complex systems feel simple.
         </p>
+        <div class="reveal reveal-delay-3" style="margin-top: 32px;">
+          <button type="button" class="btn btn-secondary" onclick="downloadCVPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download CV
+          </button>
+        </div>
+      </div>
 
-        <!-- Stats -->
+      <!-- Right: stat cards -->
+      <div class="about-stats">
         <div class="stats-grid">
           <div class="stat-card reveal reveal-delay-2">
             <div class="stat-num" data-target="15" data-suffix="+">0+</div>
@@ -254,17 +266,6 @@
             <div class="stat-num" data-target="50" data-suffix="+">0+</div>
             <div class="stat-label">Devices Monitored</div>
           </div>
-        </div>
-
-        <div class="reveal reveal-delay-4" style="margin-top: 28px;">
-          <button type="button" class="btn btn-secondary" onclick="downloadCVPDF()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Download CV
-          </button>
         </div>
       </div>
     </div>
