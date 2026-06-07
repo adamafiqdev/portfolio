@@ -217,45 +217,38 @@
 ════════════════════════════════════════════════════════ -->
 <section class="section" id="about">
   <div class="container">
-    <div class="about-grid">
-      <!-- Left: bio + button -->
-      <div class="about-content">
-        <div class="section-label reveal">About Me</div>
-        <h2 class="section-title reveal reveal-delay-1">
-          Turning complexity into<br>clear, working software
-        </h2>
-        <p class="about-bio reveal reveal-delay-2" id="aboutBio1">
-          I'm <strong>Adam Afiq</strong>, a Software Engineer focused on building practical systems
-          that solve real business problems. I specialize in <strong>dashboards and monitoring applications</strong>
-          that give teams instant visibility into their data, <strong>internal tools</strong> that automate
-          workflows, and <strong>web applications</strong> built for reliability and usability.
-        </p>
-        <p class="about-bio reveal reveal-delay-2" id="aboutBio2">
-          My approach is straightforward: understand the problem deeply, build a clean solution,
-          and deliver something that actually gets used. I care about performance, maintainability,
-          and making complex systems feel simple.
-        </p>
-      </div>
-
-      <!-- Right: stat cards -->
-      <div class="about-stats">
-        <div class="stats-grid">
-          <div class="stat-card reveal reveal-delay-2">
-            <div class="stat-num" data-target="15" data-suffix="+">0+</div>
-            <div class="stat-label">Projects Completed</div>
-          </div>
-          <div class="stat-card reveal reveal-delay-3">
-            <div class="stat-num" data-target="10" data-suffix="+">0+</div>
-            <div class="stat-label">Satisfied Clients</div>
-          </div>
-          <div class="stat-card reveal reveal-delay-3">
-            <div class="stat-num" data-target="99" data-suffix=".9%">0%</div>
-            <div class="stat-label">Avg. System Uptime</div>
-          </div>
-          <div class="stat-card reveal reveal-delay-4">
-            <div class="stat-num" data-target="50" data-suffix="+">0+</div>
-            <div class="stat-label">Devices Monitored</div>
-          </div>
+    <div class="about-centered">
+      <div class="section-label reveal" style="justify-content:center;">About Me</div>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">
+        Turning complexity into<br>clear, working software
+      </h2>
+      <p class="about-bio reveal reveal-delay-2" id="aboutBio1" style="text-align:center;">
+        I'm <strong>Adam Afiq</strong>, a Software Engineer focused on building practical systems
+        that solve real business problems. I specialize in <strong>dashboards and monitoring applications</strong>
+        that give teams instant visibility into their data, <strong>internal tools</strong> that automate
+        workflows, and <strong>web applications</strong> built for reliability and usability.
+      </p>
+      <p class="about-bio reveal reveal-delay-2" id="aboutBio2" style="text-align:center;">
+        My approach is straightforward: understand the problem deeply, build a clean solution,
+        and deliver something that actually gets used. I care about performance, maintainability,
+        and making complex systems feel simple.
+      </p>
+      <div class="stats-grid reveal reveal-delay-3">
+        <div class="stat-card">
+          <div class="stat-num" data-target="15" data-suffix="+">0+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="10" data-suffix="+">0+</div>
+          <div class="stat-label">Satisfied Clients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="99" data-suffix=".9%">0%</div>
+          <div class="stat-label">Avg. System Uptime</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="50" data-suffix="+">0+</div>
+          <div class="stat-label">Devices Monitored</div>
         </div>
       </div>
     </div>
@@ -359,31 +352,31 @@
 ════════════════════════════════════════════════════════ -->
 <section class="section" id="projects">
   <div class="container">
-    <div class="projects-header">
-      <div>
-        <div class="section-label reveal">Portfolio</div>
-        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">Featured Projects</h2>
-      </div>
+    <div style="text-align:center; max-width:540px; margin:0 auto 48px;">
+      <div class="section-label reveal" style="justify-content:center;">Portfolio</div>
+      <h2 class="section-title reveal reveal-delay-1">Featured Projects</h2>
+    </div>
 
-      <div class="projects-controls">
-        <!-- Search -->
-        <div class="search-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <input class="search-input" id="projectSearch" type="text" placeholder="Search projects...">
+    <div class="carousel-wrap" id="carouselWrap">
+      <div class="carousel-track" id="carouselTrack">
+        <div style="text-align:center; padding:60px 0; color:var(--text-muted); width:100%;">
+          Loading projects…
         </div>
-
-        <!-- Filter Tabs -->
-        <div class="filter-tabs" id="filterTabs"></div>
       </div>
     </div>
 
-    <div class="projects-grid" id="projectsGrid">
-      <!-- Loaded dynamically from projects.json -->
-      <div style="grid-column:1/-1; text-align:center; padding: 60px 0; color: var(--text-muted);">
-        <div style="font-size: 14px;">Loading projects...</div>
-      </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="carouselPrev" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-btn" id="carouselNext" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
@@ -800,36 +793,43 @@
       <h3 class="pdf-modal-title" id="pdfModalTitle">Download PDF</h3>
       <button class="pdf-modal-close" id="pdfModalClose" aria-label="Close modal">&times;</button>
     </div>
-    <p class="pdf-modal-desc">Optionally add your details to include them in the PDF. Phone/location requires a password.</p>
-    <div class="pdf-modal-fields">
+    <p class="pdf-modal-desc">Your PDF is ready to download. Need to include a profile photo, phone number, or location? Click below.</p>
+    <button type="button" class="pdf-adv-toggle" id="pdfAdvToggle" aria-expanded="false" aria-controls="pdfAdvFields">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      Advanced Options
+    </button>
+    <div id="pdfAdvFields" class="pdf-adv-fields" hidden>
+      <div class="pdf-modal-fields">
 
-      <!-- Profile image upload -->
-      <div class="pdf-modal-label">
-        Profile Photo <span class="pdf-modal-opt">optional</span>
-        <input type="file" id="pdfProfileImg" accept="image/*" style="display:none">
-        <label for="pdfProfileImg" class="pdf-modal-img-zone" id="pdfImgZone">
-          <div id="pdfImgPreview" class="pdf-modal-img-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted)"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            <span>Click to upload photo</span>
-          </div>
-        </label>
-        <button type="button" id="pdfImgClear" class="pdf-modal-img-clear" hidden>Remove photo</button>
-      </div>
+        <!-- Profile image upload -->
+        <div class="pdf-modal-label">
+          Profile Photo <span class="pdf-modal-opt">optional</span>
+          <input type="file" id="pdfProfileImg" accept="image/*" style="display:none">
+          <label for="pdfProfileImg" class="pdf-modal-img-zone" id="pdfImgZone">
+            <div id="pdfImgPreview" class="pdf-modal-img-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted)"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Click to upload photo</span>
+            </div>
+          </label>
+          <button type="button" id="pdfImgClear" class="pdf-modal-img-clear" hidden>Remove photo</button>
+        </div>
 
-      <label class="pdf-modal-label">
-        Phone Number <span class="pdf-modal-opt">optional</span>
-        <input type="tel" id="pdfPhone" class="pdf-modal-input" placeholder="+60 12-345 6789" autocomplete="tel">
-      </label>
-      <label class="pdf-modal-label">
-        Location <span class="pdf-modal-opt">optional</span>
-        <input type="text" id="pdfLocation" class="pdf-modal-input" placeholder="Kuala Lumpur, Malaysia" autocomplete="address-level1">
-      </label>
-      <div id="pdfPasswordWrap" class="pdf-modal-pw-wrap" hidden>
         <label class="pdf-modal-label">
-          Password <span class="pdf-modal-req">required</span>
-          <input type="password" id="pdfPassword" class="pdf-modal-input" placeholder="Enter password" autocomplete="off">
+          Phone Number <span class="pdf-modal-opt">optional</span>
+          <input type="tel" id="pdfPhone" class="pdf-modal-input" placeholder="+60 12-345 6789" autocomplete="tel">
         </label>
-        <p id="pdfPasswordErr" class="pdf-modal-pw-err" hidden>Incorrect password. Please try again.</p>
+        <label class="pdf-modal-label">
+          Location <span class="pdf-modal-opt">optional</span>
+          <input type="text" id="pdfLocation" class="pdf-modal-input" placeholder="Kuala Lumpur, Malaysia" autocomplete="address-level1">
+        </label>
+        <div id="pdfPasswordWrap" class="pdf-modal-pw-wrap" hidden>
+          <label class="pdf-modal-label">
+            Password <span class="pdf-modal-req">required</span>
+            <input type="password" id="pdfPassword" class="pdf-modal-input" placeholder="Enter password" autocomplete="off">
+          </label>
+          <p id="pdfPasswordErr" class="pdf-modal-pw-err" hidden>Incorrect password. Please try again.</p>
+        </div>
+
       </div>
     </div>
     <div class="pdf-modal-actions">
@@ -842,7 +842,7 @@
 <!-- Scripts -->
 <script src="assets/js/site-data.js?v=7"></script>
 <script src="assets/js/main.js?v=1"></script>
-<script src="assets/js/projects.js?v=1"></script>
+<script src="assets/js/projects.js?v=2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
 <script src="assets/js/generate-pdf.js?v=21"></script>
 </body>

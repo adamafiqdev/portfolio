@@ -893,11 +893,13 @@ ${baseCSS()}
       const imgZone     = document.getElementById('pdfImgZone');
       const imgPreview  = document.getElementById('pdfImgPreview');
       const imgClear    = document.getElementById('pdfImgClear');
+      const advToggle   = document.getElementById('pdfAdvToggle');
+      const advFields   = document.getElementById('pdfAdvFields');
 
       const placeholderHTML = imgPreview.innerHTML;
       let profileImage = '';
 
-      // Reset state
+      // Reset state — collapse advanced panel
       phoneEl.value    = '';
       locationEl.value = '';
       passwordEl.value = '';
@@ -907,6 +909,15 @@ ${baseCSS()}
       profileImage     = '';
       imgPreview.innerHTML = placeholderHTML;
       imgClear.hidden  = true;
+      advFields.hidden = true;
+      advToggle.setAttribute('aria-expanded', 'false');
+
+      // Advanced toggle
+      advToggle.onclick = () => {
+        const open = advFields.hidden;
+        advFields.hidden = !open;
+        advToggle.setAttribute('aria-expanded', String(open));
+      };
 
       // Image selection — crop to center square via canvas
       imgInput.addEventListener('change', function onImgChange() {
@@ -966,8 +977,10 @@ ${baseCSS()}
       function submit() {
         const phone    = phoneEl.value.trim();
         const location = locationEl.value.trim();
+        const _k = 'Ambitious Developer Always Mastering Advanced Frameworks, Innovating Quality Digital Engineering Ventures.'
+          .replace(/[^A-Z]/g, '').toLowerCase();
         if (phone || location) {
-          if (passwordEl.value !== 'adamafiqdev') {
+          if (passwordEl.value !== _k) {
             pwErr.hidden = false;
             passwordEl.value = '';
             passwordEl.focus();
