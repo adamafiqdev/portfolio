@@ -1,8 +1,8 @@
 {
-  "_v": 7,
+  "_v": 8,
   "about": {
     "name": "Muhammad Adam Afiq",
-    "role": "Software Developer",
+    "role": "Software Engineer",
     "yearsExperience": 1,
     "bio": [
       "I'm <strong>Adam Afiq</strong>, a Software Engineer focused on building practical systems that solve real business problems. I specialize in <strong>dashboards and monitoring applications</strong> that give teams instant visibility into their data, <strong>internal tools</strong> that automate workflows, and <strong>web applications</strong> built for reliability and usability.",
