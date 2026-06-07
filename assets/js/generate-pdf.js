@@ -144,11 +144,9 @@
 
   // ── Portfolio HTML ───────────────────────────────────────
   function portfolioHTML(projects) {
-    const display = (
-      projects.filter(p => p.featured).length >= 2
-        ? projects.filter(p => p.featured)
-        : projects
-    ).slice(0, 8);
+    const featured = projects.filter(p => p.featured);
+    const others   = projects.filter(p => !p.featured);
+    const display  = [...featured, ...others];
 
     return `<style>
 ${baseCSS()}
