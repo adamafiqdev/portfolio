@@ -1,5 +1,5 @@
 {
-  "_v": 15,
+  "_v": 17,
   "projects": [
     {
       "id": "project-1",
@@ -181,7 +181,7 @@
         "JavaScript",
         "MySQL"
       ],
-      "featured": false,
+      "featured": true,
       "coverImage": "",
       "screenshots": [],
       "technologies": [
@@ -249,7 +249,7 @@
         "User-friendly interface",
         "Centralized monitoring platform"
       ],
-      "featured": false,
+      "featured": true,
       "coverImage": "",
       "screenshots": [],
       "technologies": [
@@ -324,7 +324,7 @@
         "Service history tracking",
         "Operational process automation"
       ],
-      "featured": false,
+      "featured": true,
       "coverImage": "images/workshop1.jpeg",
       "screenshots": [
         "images/workshop1.jpeg",
@@ -463,7 +463,7 @@
         "Content analytics dashboard",
         "Administrative control panel"
       ],
-      "featured": false,
+      "featured": true,
       "coverImage": "images/dashboard.png",
       "screenshots": [
         "images/dashboard.png"
